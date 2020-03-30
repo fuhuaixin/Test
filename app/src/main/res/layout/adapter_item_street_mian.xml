@@ -12,9 +12,9 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:text="111"
+        android:text=""
         android:textSize="8sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="35dp"
+        android:layout_height="13dp"/>
 
 </RelativeLayout>

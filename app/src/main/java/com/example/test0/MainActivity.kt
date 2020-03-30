@@ -36,8 +36,6 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
 
-
-
 //        EasyHttp.get(url).execute(object :CallBack<>)
         recycle_government.layoutManager = GridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
@@ -70,7 +68,7 @@ class MainActivity : BaseActivity() {
     override fun initViewModelListener() {
         viewModel.getWeather(cityName)
         viewModel.weatherModel.observe(this, Observer {
-            it.let {
+            it.apply {
 //                Log.e("fhxx",it.toString())
 //                Log.e("fhxx",UniCode.decode2(it.wea))
 
