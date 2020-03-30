@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="50dp">
+
+    <ImageView
+        android:id="@+id/layout_empty_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_empty1" />
+
+    <TextView
+        android:id="@+id/layout_empty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="暂无数据~"
+        android:textSize="14sp" />
+
+    <Button
+        android:text="再试试"
+        android:id="@+id/fancyBt"
+        android:layout_width="122dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:padding="1dp"
+        android:visibility="gone"
+        android:textSize="14dp"
+       />
+</LinearLayout>
