@@ -1,24 +1,26 @@
 package com.example.test0
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONObject
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.test0.adapter.StreetMainAdapter
-import com.example.test0.base.BaseActivity
-import com.example.test0.utlis.UniCode
-import com.example.test0.utlis.getViewModel
-import com.example.test0.viewmodel.StreetMainViewModel
-import com.zhouyou.http.EasyHttp
-import com.zhouyou.http.callback.CallBack
+import com.example.test0.bean.Bean2
+import com.example.test0.http.HttpCallBack
+import com.example.test0.http.HttpUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.HashMap
 
-class MainActivity : BaseActivity() {
 
-    //    val url :String ="http://192.168.10.133:8089/VideoManager/dev/detailInfo?devId=7657856"
-    private val viewModel: StreetMainViewModel by lazy { getViewModel(StreetMainViewModel::class.java) }
-
+class MainActivity : AppCompatActivity() {
 
     var streetMainAdapter: StreetMainAdapter? = null
     var strListGoverment: MutableList<String> =
@@ -28,15 +30,18 @@ class MainActivity : BaseActivity() {
     var strListForPeople: MutableList<String> = mutableListOf("交通状况", "通知公告", "疫情信息") //便民服务数据
     var strListGis: MutableList<String> = mutableListOf("街道实景", "建筑物信息") //便民服务数据
 
-    var cityName :String ="郑州"
+    var requestQueue :RequestQueue ?=null
 
-    override fun setLayoutId(): Int {
-        return R.layout.activity_main
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        requestQueue= Volley.newRequestQueue(this)
+        initView()
+        initHttpListener()
     }
 
-    override fun initView() {
-
-//        EasyHttp.get(url).execute(object :CallBack<>)
+    var map: Map<String, String> ?=HashMap()
+    fun initView() {
         recycle_government.layoutManager = GridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
         recycle_government.adapter = streetMainAdapter
@@ -60,26 +65,77 @@ class MainActivity : BaseActivity() {
         recycle_gis.adapter = streetMainAdapter
 
 
-    }
-
-    override fun initListener() {
-    }
-
-    override fun initViewModelListener() {
-        viewModel.getWeather(cityName)
-        viewModel.weatherModel.observe(this, Observer {
-            it.apply {
-//                Log.e("fhxx",it.toString())
-//                Log.e("fhxx",UniCode.decode2(it.wea))
-
-            }
-        })
-    }
-
-    override fun getData(isRefresh: Boolean) {
 
     }
 
+
+    var url = "https://tianqiapi.com/api?version=v6&appid=52796525&appsecret=2cBrl3hs&city=郑州"
+    var bean: Bean2? = null
+    fun initHttpListener() {
+        val stringRequest =
+            JsonObjectRequest(Request.Method.GET, url,
+                Response.Listener { response ->
+                    //                message.setText(response.toString());
+                    bean = JSON.parseObject<Bean2>(response.toString(), Bean2::class.java)
+
+                    Log.e("fhxx", bean!!.wea + " -----" + bean!!.tem)
+
+                    tv_tem.text = bean!!.tem
+                    tv_wea.text = "°C  ${bean!!.wea}"
+                    when (bean!!.wea_img) {
+                        "qing" -> {
+                            image_wea.setImageResource(R.drawable.ic_qing)
+                            image_little_wea.setImageResource(R.drawable.icon_qing)
+                        }
+                        "yu" -> {
+                            image_wea.setImageResource(R.drawable.ic_yu)
+                            image_little_wea.setImageResource(R.drawable.icon_yu)
+                        }
+                        "yin" -> {
+                            image_wea.setImageResource(R.drawable.ic_yin)
+                            image_little_wea.setImageResource(R.drawable.icon_yin)
+                        }
+                        "yun" -> {
+                            image_wea.setImageResource(R.drawable.ic_yun)
+                            image_little_wea.setImageResource(R.drawable.icon_yun)
+                        }
+                        "xue" -> {
+                            image_wea.setImageResource(R.drawable.ic_xue)
+                            image_little_wea.setImageResource(R.drawable.icon_bingbao)
+                        }
+                        "lei" -> {
+                            image_wea.setImageResource(R.drawable.ic_lei)
+                            image_little_wea.setImageResource(R.drawable.icon_lei)
+                        }
+                        "shachen" -> {
+                            image_wea.setImageResource(R.drawable.ic_shachen)
+                            image_little_wea.setImageResource(R.drawable.icon_shachen)
+                        }
+                        "wu" -> {
+                            image_wea.setImageResource(R.drawable.ic_wu)
+                            image_little_wea.setImageResource(R.drawable.icon_wu)
+                        }
+                        "bingbao" -> {
+                            image_wea.setImageResource(R.drawable.ic_bingbao)
+                            image_little_wea.setImageResource(R.drawable.icon_bingbao)
+                        }
+                    }
+
+
+                }, Response.ErrorListener {
+
+                })
+
+        requestQueue!!.add(stringRequest)
+    }
+
+   /* fun PostTest(){
+        var map = TreeMap<String,String>()
+        map["name"] = "chaychan"
+        map["age"] = "22 years old"
+        map["hobby"] = "programming";
+        HttpUtil.getInstance().request(this,url,map,object :HttpCallBack<>)
+    }*/
 
 
 }

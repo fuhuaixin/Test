@@ -255,12 +255,53 @@
             android:layout_width="5dp"
             android:layout_height="match_parent" />
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_party" />
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/image_wea"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_qing" />
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/image_little_wea"
+                android:src="@drawable/icon_qing"
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_tem"
+                    android:layout_marginLeft="15dp"
+
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:textSize="24sp"
+                    android:text="23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_wea"
+                    android:layout_toRightOf="@+id/tv_tem"
+                    android:layout_alignParentBottom="true"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:text="°C  晴"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+        
     </LinearLayout>
 
 

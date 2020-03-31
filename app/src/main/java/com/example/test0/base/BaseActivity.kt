@@ -7,8 +7,6 @@ import androidx.annotation.Size
 import androidx.appcompat.app.AppCompatActivity
 import com.example.test0.utlis.PermissionsInterface
 import com.example.test0.view.EmptyView
-import com.zytdsj.citywindow.lib_project.view.LoadingViewInterface
-import org.greenrobot.eventbus.EventBus
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
@@ -27,7 +25,6 @@ import pub.devrel.easypermissions.PermissionRequest
  */
 abstract class BaseActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     private var TAG0 = "BaseActivity"
-    private var isEventBus = false
     var emptyView: EmptyView? = null//无数据页面
 
 
@@ -48,19 +45,11 @@ abstract class BaseActivity : AppCompatActivity(), EasyPermissions.PermissionCal
 
     override fun onDestroy() {
         super.onDestroy()
-        if (isEventBus) {
-            EventBus.getDefault().unregister(this)//反注册EventBus
-        }
+
 
     }
 
-    //以下是通用方法
-    //不可重写
-    fun setEventBus() {
-        isEventBus = true
-        //初始化EventBus
-        EventBus.getDefault().register(this)
-    }
+
 
     //不可重写
     fun setEmptyView() {
