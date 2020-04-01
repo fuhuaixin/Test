@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
-    android:paddingBottom="20dp"
+    android:paddingBottom="30dp"
     tools:context=".MainActivity">
 
 
@@ -43,21 +43,29 @@
                 android:layout_weight="4"
                 android:layout_height="18dp">
 
-                <TextView
+                <EditText
+                    android:id="@+id/etMessage"
+                    android:background="@null"
                     android:textStyle="bold"
                     android:textColor="#96A0AA"
                     android:layout_marginLeft="9dp"
                     android:layout_centerVertical="true"
                     android:textSize="8sp"
-                    android:text="您可以对我说“查看天气预报”"
+                    android:hint="您可以对我说“查看天气预报”"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/icon_say_btn"
-                android:layout_width="15dp"
-                android:layout_height="20dp"/>
+            <RelativeLayout
+                android:id="@+id/rl_listen"
+                android:paddingLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/icon_say_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
 
@@ -75,10 +83,10 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_government" />
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:id="@+id/recycle_government"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -105,10 +113,10 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_party" />
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     android:id="@+id/recycle_party"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
@@ -129,10 +137,10 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_for_people" />
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     android:id="@+id/recycle_for_people"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
@@ -158,10 +166,10 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_publicity" />
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     android:id="@+id/recycle_publicity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
@@ -181,10 +189,10 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_gis" />
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     android:id="@+id/recycle_gis"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
@@ -267,7 +275,7 @@
                 android:src="@drawable/ic_qing" />
             <ImageView
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="20dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/image_little_wea"
                 android:src="@drawable/icon_qing"
@@ -280,7 +288,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/tv_tem"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
 
                     android:textStyle="bold"
                     android:textColor="#ffffff"
