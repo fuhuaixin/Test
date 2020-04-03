@@ -50,4 +50,7 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation files('libs/Msc.jar')
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/IndoorscapeAlbumPlugin.jar')
+    implementation 'com.zyao89:zloading:1.2.0'
 }

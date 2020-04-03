@@ -1,12 +1,14 @@
 package com.example.test0
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.textclassifier.TextLinks
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,9 +17,14 @@ import com.alibaba.fastjson.JSON
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.example.test0.activity.StreetSceneryActivity
+import com.example.test0.activity.WebActivity
 import com.example.test0.adapter.StreetMainAdapter
+import com.example.test0.base.NetConstants
 import com.example.test0.bean.Bean2
 import com.example.test0.utlis.JsonParser
 import com.iflytek.cloud.*
@@ -70,7 +77,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         recycle_for_people.layoutManager = GridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListForPeople, 2)
         recycle_for_people.adapter = streetMainAdapter
+//        rl_bg
+        streetMainAdapter!!.onItemChildClickListener =BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
 
+            when(view.id){
+                R.id.rl_bg ->{
+                    when(strListForPeople[position]){
+                        "疫情信息" ->{
+                            var intent = Intent(this, WebActivity::class.java)
+                            //https://news.sina.cn/zt_d/yiqing0121
+                            intent.putExtra("url","https://news.ifeng.com/c/special/7uLj4F83Cqm")
+                            startActivity(intent)
+                        }
+                        "通知公告" ->{
+                            var intent = Intent(this, StreetSceneryActivity::class.java)
+                            //https://news.sina.cn/zt_d/yiqing0121
+                            startActivity(intent)
+                        }
+                    }
+                }
+            }
+
+        }
 
         recycle_gis.layoutManager = GridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGis, 2)
@@ -96,13 +124,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
-    var url = "https://tianqiapi.com/api?version=v6&appid=52796525&appsecret=2cBrl3hs&city=郑州"
+    //查询
+//    var url = "https://tianqiapi.com/api?version=v6&appid=52796525&appsecret=2cBrl3hs&city=郑州"
     var bean: Bean2? = null
     fun initHttpListener() {
         val stringRequest =
-            JsonObjectRequest(Request.Method.GET, url,
+            JsonObjectRequest(Request.Method.GET, NetConstants.WeatherUrl,
                 Response.Listener { response ->
+                    Log.e("fhxx11", response.toString())
                     bean = JSON.parseObject<Bean2>(response.toString(), Bean2::class.java)
 
                     Log.e("fhxx", bean!!.wea + " -----" + bean!!.tem)
@@ -153,7 +182,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 })
 
+        var jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET,
+            NetConstants.NowEpidemicUrl,
+            Response.Listener { response ->
+                var parseObject = JSON.parseObject(response.toString())
+
+                var get = parseObject.get("data")
+
+                Log.e("fhxx22", get.toString())
+            },
+            Response.ErrorListener {
+//                Log.e("fhxx", it.message)
+            })
+
         requestQueue!!.add(stringRequest)
+        requestQueue!!.add(jsonObjectRequest)
     }
 
     override fun onClick(v: View?) {

@@ -22,6 +22,8 @@ class StreetMainAdapter(context: Context,data:MutableList<String>,var choose:Int
         }
 
         helper!!.setText(R.id.tv_name,item)
+
+        helper.addOnClickListener(R.id.rl_bg)
     }
 
 }
