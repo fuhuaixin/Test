@@ -53,6 +53,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="sensor"/>
+        <activity android:name=".activity.WebInfoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"/>
 
 
     </application>

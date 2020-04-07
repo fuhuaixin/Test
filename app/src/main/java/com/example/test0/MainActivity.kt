@@ -3,13 +3,11 @@ package com.example.test0
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.textclassifier.TextLinks
-import android.widget.TextView
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,20 +15,26 @@ import com.alibaba.fastjson.JSON
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.test0.activity.StreetSceneryActivity
 import com.example.test0.activity.WebActivity
+import com.example.test0.activity.WebInfoActivity
 import com.example.test0.adapter.StreetMainAdapter
+import com.example.test0.adapter.WebInfoAdapter
 import com.example.test0.base.NetConstants
-import com.example.test0.bean.Bean2
+import com.example.test0.bean.VoiceNavBean
+import com.example.test0.bean.VoiceReplyBean
+import com.example.test0.bean.WeatherNowBean
 import com.example.test0.utlis.JsonParser
+import com.example.test0.utlis.ToastUtils
+import com.example.test0.utlis.VoiceDialog
+import com.google.gson.JsonObject
 import com.iflytek.cloud.*
-import com.iflytek.cloud.ui.RecognizerDialog
-import com.iflytek.cloud.ui.RecognizerDialogListener
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -43,23 +47,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var strListForPeople: MutableList<String> = mutableListOf("交通状况", "通知公告", "疫情信息") //便民服务数据
     var strListGis: MutableList<String> = mutableListOf("街道实景", "建筑物信息") //便民服务数据
     var requestQueue: RequestQueue? = null
+    var voiceDialog: VoiceDialog? = null
+    var weatherNowBean: WeatherNowBean? = null
     //讯飞语音识别相关参数
-    var recognizerDialog: RecognizerDialog? = null
+    var mIat: SpeechRecognizer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         GetPermission()
-
-        requestQueue = Volley.newRequestQueue(this)
+        mIat = SpeechRecognizer.createRecognizer(this, mInitListener)
 
         initView()
         initHttpListener()
 
     }
 
-    var map: Map<String, String>? = HashMap()
     fun initView() {
+
+        requestQueue = Volley.newRequestQueue(this)
         rl_listen.setOnClickListener(this)
         recycle_government.layoutManager = GridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
@@ -77,33 +83,37 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         recycle_for_people.layoutManager = GridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListForPeople, 2)
         recycle_for_people.adapter = streetMainAdapter
-//        rl_bg
-        streetMainAdapter!!.onItemChildClickListener =BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+        streetMainAdapter!!.onItemChildClickListener =
+            BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
 
-            when(view.id){
-                R.id.rl_bg ->{
-                    when(strListForPeople[position]){
-                        "疫情信息" ->{
-                            var intent = Intent(this, WebActivity::class.java)
-                            //https://news.sina.cn/zt_d/yiqing0121
-                            intent.putExtra("url","https://news.ifeng.com/c/special/7uLj4F83Cqm")
-                            startActivity(intent)
-                        }
-                        "通知公告" ->{
-                            var intent = Intent(this, StreetSceneryActivity::class.java)
-                            //https://news.sina.cn/zt_d/yiqing0121
-                            startActivity(intent)
+                when (view.id) {
+                    R.id.rl_bg -> {
+                        when (strListForPeople[position]) {
+                            "疫情信息" -> {
+                                var intent = Intent(this, WebActivity::class.java)
+                                intent.putExtra(
+                                    "url",
+                                    "https://news.ifeng.com/c/special/7uLj4F83Cqm"
+                                )
+                                startActivity(intent)
+                            }
+                            "通知公告" -> {
+                             /*   var intent = Intent(this, StreetSceneryActivity::class.java)
+                                startActivity(intent)*/
+                                var intent =Intent(this,WebInfoActivity::class.java)
+                                startActivity(intent)
+                            }
                         }
                     }
                 }
-            }
 
-        }
+            }
 
         recycle_gis.layoutManager = GridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGis, 2)
         recycle_gis.adapter = streetMainAdapter
 
+        voiceDialog = VoiceDialog(this, R.style.CustomDialog, myDialogListener)
 
     }
 
@@ -124,21 +134,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    //查询
-//    var url = "https://tianqiapi.com/api?version=v6&appid=52796525&appsecret=2cBrl3hs&city=郑州"
-    var bean: Bean2? = null
+
     fun initHttpListener() {
         val stringRequest =
             JsonObjectRequest(Request.Method.GET, NetConstants.WeatherUrl,
                 Response.Listener { response ->
                     Log.e("fhxx11", response.toString())
-                    bean = JSON.parseObject<Bean2>(response.toString(), Bean2::class.java)
-
-                    Log.e("fhxx", bean!!.wea + " -----" + bean!!.tem)
-
-                    tv_tem.text = bean!!.tem
-                    tv_wea.text = "°C  ${bean!!.wea}"
-                    when (bean!!.wea_img) {
+                    weatherNowBean = JSON.parseObject<WeatherNowBean>(
+                        response.toString(),
+                        WeatherNowBean::class.java
+                    )
+                    tv_tem.text = weatherNowBean!!.tem
+                    tv_wea.text = "°C  ${weatherNowBean!!.wea}"
+                    when (weatherNowBean!!.wea_img) {
                         "qing" -> {
                             image_wea.setImageResource(R.drawable.ic_qing)
                             image_little_wea.setImageResource(R.drawable.icon_qing)
@@ -187,13 +195,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             NetConstants.NowEpidemicUrl,
             Response.Listener { response ->
                 var parseObject = JSON.parseObject(response.toString())
-
                 var get = parseObject.get("data")
 
-                Log.e("fhxx22", get.toString())
             },
             Response.ErrorListener {
-//                Log.e("fhxx", it.message)
             })
 
         requestQueue!!.add(stringRequest)
@@ -202,44 +207,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.rl_listen -> { //点击开始语音识别
-//                getWindow().getDecorView().findViewWithTag(“textlink”);
-                recognizerDialog = RecognizerDialog(this, mInitListener)
-                recognizerDialog!!.setParameter(SpeechConstant.ASR_PTT, "0")
-                recognizerDialog!!.setParameter(SpeechConstant.RESULT_TYPE, "json")
-                recognizerDialog!!.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD)
-                recognizerDialog!!.setParameter(SpeechConstant.ACCENT, "mandarin")
-                recognizerDialog!!.setListener(object : RecognizerDialogListener {
-                    override fun onResult(recognizerResult: RecognizerResult?, p1: Boolean) {
-                        if (!p1) {
-                            var parseIatResult =
-                                JsonParser.parseIatResult(recognizerResult!!.resultString)
-                            etMessage.setText(parseIatResult)
-                            //获取焦点
-                            etMessage.requestFocus();
-                            //将光标定位到文字最后，以便修改
-                            etMessage.setSelection(parseIatResult.length);
-                        }
-                      /*  var parseIatResult =
-                            JsonParser.parseIatResult(recognizerResult!!.resultString)
-                        etMessage.setText(parseIatResult)
-                        //获取焦点
-                        etMessage.requestFocus();
-                        //将光标定位到文字最后，以便修改
-                        etMessage.setSelection(parseIatResult.length);*/
-                    }
-
-                    override fun onError(p0: SpeechError?) {
-                        Toast.makeText(this@MainActivity, "$p0", Toast.LENGTH_SHORT).show()
-                    }
-
-                })
-                recognizerDialog!!.show()
-                var findViewWithTag = recognizerDialog!!.getWindow()!!.getDecorView()
-                    .findViewWithTag<TextView>("textlink")
-                findViewWithTag.text=("");
-                findViewWithTag.isEnabled =false
-                findViewWithTag.paint.flags=Paint.SUBPIXEL_TEXT_FLAG
+            R.id.rl_listen -> { //点击开始语音弹窗
+                voiceDialog!!.show()
+                var win = voiceDialog!!.window
+                var attributes = win!!.attributes
+                attributes.width = WindowManager.LayoutParams.MATCH_PARENT
+                attributes.height = WindowManager.LayoutParams.MATCH_PARENT
+                win.attributes = attributes
             }
         }
     }
@@ -253,7 +227,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (code != ErrorCode.SUCCESS) {
             Toast.makeText(
                 this,
-                "初始化失败，错误码：$code,请点击网址https://www.xfyun.cn/document/error-code查询解决方案",
+                "初始化失败，错误码：$code",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -266,6 +240,93 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
          map["hobby"] = "programming";
          HttpUtil.getInstance().request(this,url,map,object :HttpCallBack<>)
      }*/
+
+    private val myDialogListener: VoiceDialog.MyDialogListener =
+        VoiceDialog.MyDialogListener { view ->
+            when (view!!.id) {
+                R.id.image_start -> {
+                    Log.e("fhxx", "点击了start")
+                    mIat!!.setParameter(SpeechConstant.RESULT_TYPE, "json")
+                    mIat!!.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD)
+                    mIat!!.setParameter(SpeechConstant.ACCENT, "mandarin")
+                    mIat!!.setParameter(SpeechConstant.ASR_PTT, "0")
+                    mIat!!.startListening(mRecognizerListener)
+                }
+                R.id.viewRight,
+                R.id.viewTop,
+                R.id.viewLeft,
+                R.id.viewBottom -> {
+                    voiceDialog!!.dismiss();
+                }
+
+
+            }
+        }
+
+    // 用HashMap存储听写结果
+    private var mIatResults: HashMap<String, String> = LinkedHashMap<String, String>()
+    private val mRecognizerListener: RecognizerListener = object : RecognizerListener {
+        override fun onVolumeChanged(i: Int, bytes: ByteArray?) {
+            Log.d("fhxx", "返回音频数据：" + i + "-----------" + bytes!!.size)
+        }
+
+        override fun onResult(results: RecognizerResult?, isLast: Boolean) {
+            var result = results!!.getResultString(); //为解析的
+            Log.e("fhxx", " 没有解析的 :" + result)
+
+            var text = JsonParser.parseIatResult(result);//解析过后的
+            Log.e("fhxx", " 解析后的 :" + text)
+            var sn: String? = null
+
+            // 读取json结果中的 sn字段
+
+            var jsonObject = JSONObject(results.getResultString())
+            sn = jsonObject.optString("sn");
+
+            mIatResults.put(sn, text);//没有得到一句，添加到
+
+            var stringBuffer = StringBuffer();
+            for (key: String in mIatResults.keys) {
+                stringBuffer.append(mIatResults[key])
+            }
+            etMessage.setText(stringBuffer.toString())
+            //获取焦点
+            etMessage.requestFocus();
+            //将光标定位到文字最后，以便修改
+            etMessage.setSelection(stringBuffer.length);
+            Log.e("fhxx", "--->最新" + stringBuffer.toString())
+            if (isLast){
+                EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(),1))
+            }
+
+        }
+
+        override fun onBeginOfSpeech() {
+            Log.d("fhxx", "开始说话")
+            ToastUtils.show("开始说话")
+        }
+
+        override fun onEvent(eventType: Int, arg1: Int, arg2: Int, obj: Bundle?) {
+            // 以下代码用于获取与云端的会话id，当业务出错时将会话id提供给技术支持人员，可用于查询会话日志，定位出错原因
+            // 若使用本地能力，会话id为null
+            //	if (SpeechEvent.EVENT_SESSION_ID == eventType) {
+            //		String sid = obj.getString(SpeechEvent.KEY_EVENT_SESSION_ID);
+            //		Log.d(TAG, "session id =" + sid);
+            //
+        }
+
+        override fun onEndOfSpeech() {
+            Log.d("fhxx", "结束说话")
+            ToastUtils.show("结束说话")
+        }
+
+        override fun onError(speechError: SpeechError?) {
+            // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
+
+            Log.d("fhxx", speechError!!.getPlainDescription(true))
+        }
+
+    }
 
 
 }

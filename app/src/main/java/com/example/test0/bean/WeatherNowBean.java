@@ -1,6 +1,6 @@
 package com.example.test0.bean;
 
-public class Bean2 {
+public class WeatherNowBean {
 
     /**
      * cityid : 101181601

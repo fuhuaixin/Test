@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/shape_bg_web_title">
+
+
+    <LinearLayout
+        android:id="@+id/llBack"
+        android:gravity="center"
+        android:background="@drawable/shape_bg_web_back"
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/icon_head_back"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="5dp"/>
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="返回"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:src="@drawable/icon_head_home"
+            android:layout_width="15dp"
+            android:layout_height="15dp"/>
+        <TextView
+            android:id="@+id/tvPath"
+            android:textColor="@color/tvHintColor"
+            android:textSize="12sp"
+            android:text="英协街/政务"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <View
+        android:layout_weight="6.5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+</LinearLayout>
