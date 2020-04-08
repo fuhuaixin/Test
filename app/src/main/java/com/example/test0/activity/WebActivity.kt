@@ -2,49 +2,52 @@ package com.example.test0.activity
 
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
-import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.test0.R
 import com.example.test0.base.BaseActivity
+import com.example.test0.utlis.ToastUtils
 import kotlinx.android.synthetic.main.activity_webh5.*
+import kotlinx.android.synthetic.main.inclue_web_title.*
 
+/**
+ * web页展示
+ */
 class WebActivity : BaseActivity() {
 
     var stringExtraUrl: String = ""
+    var strPath: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webh5)
 //        stringExtraUrl =
-
+        strPath = intent.getStringExtra("path")
+        tvPath.text = strPath
+        dialog()
         var mWebSettings: WebSettings = webView.getSettings();
-        mWebSettings.setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
-        mWebSettings.setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
+        mWebSettings.javaScriptCanOpenWindowsAutomatically =
+            true;//设置js可以直接打开窗口，如window.open()，默认为false
+        mWebSettings.javaScriptEnabled = true;//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
         mWebSettings.setSupportZoom(true);//是否可以缩放，默认true
-        mWebSettings.setBuiltInZoomControls(true);//是否显示缩放按钮，默认false
-        mWebSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
-        mWebSettings.setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
+        mWebSettings.builtInZoomControls = true;//是否显示缩放按钮，默认false
+        mWebSettings.useWideViewPort = true;//设置此属性，可任意比例缩放。大视图模式
+        mWebSettings.loadWithOverviewMode = true;//和setUseWideViewPort(true)一起解决网页自适应问题
         mWebSettings.setAppCacheEnabled(true);//是否使用缓存
-        mWebSettings.setDomStorageEnabled(true);//开启本地DOM存储
-        mWebSettings.setLoadsImagesAutomatically(true); // 加载图片
+        mWebSettings.domStorageEnabled = true;//开启本地DOM存储
+        mWebSettings.loadsImagesAutomatically = true; // 加载图片
 //        mWebSettings.setMediaPlaybackRequiresUserGesture(false);//播放音频，多媒体需要用户手动？设置为false为可自动播放
 
-//        webView.loadUrl("https://news.sina.cn/zt_d/yiqing0121");
-//        webView.loadUrl("https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_pc_3");
-        Toast.makeText(this,intent.getStringExtra("url"),Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,intent.getStringExtra("url"),Toast.LENGTH_SHORT).show()
         webView.loadUrl(intent.getStringExtra("url"));
-
 
         //设置不用系统浏览器打开,直接显示在当前Webview
         webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-//                dialog!!.show()
+                dialog!!.show()
             }
 
             override fun shouldOverrideUrlLoading(
@@ -52,9 +55,14 @@ class WebActivity : BaseActivity() {
                 url: String?
             ): Boolean {
                 view!!.loadUrl(url);
-//                dialog!!.dismiss()
+                dialog!!.dismiss()
                 return true;
             }
+        }
+
+        llBack.setOnClickListener {
+            ToastUtils.show("点击了返回")
+            finish();
         }
     }
 
@@ -63,14 +71,11 @@ class WebActivity : BaseActivity() {
     }
 
     override fun initView() {
-//        dialog()
-
-
-
 
     }
 
     override fun initListener() {
+
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -81,7 +86,6 @@ class WebActivity : BaseActivity() {
         return super.onKeyDown(keyCode, event)
 
     }
-
 
     /*返回页
     ll_friend.setOnClickListener(new View.OnClickListener() {

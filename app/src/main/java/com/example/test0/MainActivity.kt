@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,15 +23,14 @@ import com.example.test0.activity.StreetSceneryActivity
 import com.example.test0.activity.WebActivity
 import com.example.test0.activity.WebInfoActivity
 import com.example.test0.adapter.StreetMainAdapter
-import com.example.test0.adapter.WebInfoAdapter
 import com.example.test0.base.NetConstants
-import com.example.test0.bean.VoiceNavBean
 import com.example.test0.bean.VoiceReplyBean
 import com.example.test0.bean.WeatherNowBean
 import com.example.test0.utlis.JsonParser
+import com.example.test0.utlis.NoScrollerGridLayoutManager
 import com.example.test0.utlis.ToastUtils
 import com.example.test0.utlis.VoiceDialog
-import com.google.gson.JsonObject
+import com.example.test0.view.VolumeWaveView
 import com.iflytek.cloud.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -49,9 +49,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var requestQueue: RequestQueue? = null
     var voiceDialog: VoiceDialog? = null
     var weatherNowBean: WeatherNowBean? = null
+    var basePath :String ="英协路智慧街道云平台/"
+    var forPeoplePath :String ="便民服务/"
     //讯飞语音识别相关参数
     var mIat: SpeechRecognizer? = null
-
+    //语音dialog中的控件 记得在dialog后去findviewbyId
+    var volumeWaveView :VolumeWaveView ?=null
+    var image_start :ImageView ?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -67,22 +71,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         requestQueue = Volley.newRequestQueue(this)
         rl_listen.setOnClickListener(this)
-        recycle_government.layoutManager = GridLayoutManager(this, 3)
+        recycle_government.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
+        recycle_government.isNestedScrollingEnabled =false
         recycle_government.adapter = streetMainAdapter
 
-        recycle_party.layoutManager = GridLayoutManager(this, 3)
+        recycle_party.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListParty, 2)
+        recycle_party.isNestedScrollingEnabled =false
         recycle_party.adapter = streetMainAdapter
 
-        recycle_publicity.layoutManager = GridLayoutManager(this, 3)
+        recycle_publicity.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListPublicity, 2)
         recycle_publicity.adapter = streetMainAdapter
 
 
-        recycle_for_people.layoutManager = GridLayoutManager(this, 3)
+        recycle_for_people.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListForPeople, 2)
         recycle_for_people.adapter = streetMainAdapter
+
+
         streetMainAdapter!!.onItemChildClickListener =
             BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
 
@@ -93,25 +101,41 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 var intent = Intent(this, WebActivity::class.java)
                                 intent.putExtra(
                                     "url",
-                                    "https://news.ifeng.com/c/special/7uLj4F83Cqm"
-                                )
+//                                    "https://news.ifeng.com/c/special/7uLj4F83Cqm"
+                                    "https://alihealth.taobao.com/medicalhealth/influenzamap")
+                                intent.putExtra("path","$basePath${forPeoplePath}疫情信息")
                                 startActivity(intent)
                             }
                             "通知公告" -> {
-                             /*   var intent = Intent(this, StreetSceneryActivity::class.java)
-                                startActivity(intent)*/
                                 var intent =Intent(this,WebInfoActivity::class.java)
+                                intent.putExtra("path","$basePath${forPeoplePath}通知公告")
                                 startActivity(intent)
                             }
+                        }
+
+                    }
+                }
+
+            }
+        recycle_gis.layoutManager = NoScrollerGridLayoutManager(this, 3)
+        streetMainAdapter = StreetMainAdapter(this, strListGis, 2)
+        recycle_gis.adapter = streetMainAdapter
+        streetMainAdapter!!.onItemChildClickListener =
+            BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+
+                when (view.id) {
+                    R.id.rl_bg -> {
+                        when (strListGis[position]) {
+                            "街道实景" -> {
+                                var intent = Intent(this, StreetSceneryActivity::class.java)
+                                startActivity(intent)
+                            }
+
                         }
                     }
                 }
 
             }
-
-        recycle_gis.layoutManager = GridLayoutManager(this, 3)
-        streetMainAdapter = StreetMainAdapter(this, strListGis, 2)
-        recycle_gis.adapter = streetMainAdapter
 
         voiceDialog = VoiceDialog(this, R.style.CustomDialog, myDialogListener)
 
@@ -122,7 +146,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val REQUEST_CODE_CONTACT = 101
             val permissions = arrayOf<String>(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.RECORD_AUDIO
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.ACCESS_FINE_LOCATION
             )
             //验证是否许可权限
             for (str in permissions) {
@@ -214,6 +239,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 attributes.width = WindowManager.LayoutParams.MATCH_PARENT
                 attributes.height = WindowManager.LayoutParams.MATCH_PARENT
                 win.attributes = attributes
+
+                volumeWaveView = voiceDialog!!.findViewById(R.id.volumeWaveView)
+                image_start = voiceDialog!!.findViewById(R.id.image_start)
+
             }
         }
     }
@@ -243,6 +272,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val myDialogListener: VoiceDialog.MyDialogListener =
         VoiceDialog.MyDialogListener { view ->
+//            view.findViewById<>(R.id.).visibility =View.VISIBLE
             when (view!!.id) {
                 R.id.image_start -> {
                     Log.e("fhxx", "点击了start")
@@ -251,6 +281,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     mIat!!.setParameter(SpeechConstant.ACCENT, "mandarin")
                     mIat!!.setParameter(SpeechConstant.ASR_PTT, "0")
                     mIat!!.startListening(mRecognizerListener)
+                    volumeWaveView!!.visibility =View.VISIBLE
+                    image_start!!.visibility =View.GONE
                 }
                 R.id.viewRight,
                 R.id.viewTop,
@@ -258,7 +290,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.viewBottom -> {
                     voiceDialog!!.dismiss();
                 }
-
 
             }
         }
@@ -271,20 +302,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         override fun onResult(results: RecognizerResult?, isLast: Boolean) {
-            var result = results!!.getResultString(); //为解析的
-            Log.e("fhxx", " 没有解析的 :" + result)
+            var result = results!!.getResultString(); //没有解析的
 
             var text = JsonParser.parseIatResult(result);//解析过后的
-            Log.e("fhxx", " 解析后的 :" + text)
             var sn: String? = null
-
             // 读取json结果中的 sn字段
-
             var jsonObject = JSONObject(results.getResultString())
             sn = jsonObject.optString("sn");
-
-            mIatResults.put(sn, text);//没有得到一句，添加到
-
+            mIatResults.put(sn, text);
+            //没有得到一句，添加到
             var stringBuffer = StringBuffer();
             for (key: String in mIatResults.keys) {
                 stringBuffer.append(mIatResults[key])
@@ -294,7 +320,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             etMessage.requestFocus();
             //将光标定位到文字最后，以便修改
             etMessage.setSelection(stringBuffer.length);
-            Log.e("fhxx", "--->最新" + stringBuffer.toString())
             if (isLast){
                 EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(),1))
             }
@@ -303,7 +328,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         override fun onBeginOfSpeech() {
             Log.d("fhxx", "开始说话")
-            ToastUtils.show("开始说话")
+//            ToastUtils.show("开始说话")
         }
 
         override fun onEvent(eventType: Int, arg1: Int, arg2: Int, obj: Bundle?) {
@@ -317,12 +342,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         override fun onEndOfSpeech() {
             Log.d("fhxx", "结束说话")
-            ToastUtils.show("结束说话")
+//            ToastUtils.show("结束说话")
+            volumeWaveView!!.visibility =View.GONE
+            image_start!!.visibility =View.VISIBLE
         }
 
         override fun onError(speechError: SpeechError?) {
             // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
-
             Log.d("fhxx", speechError!!.getPlainDescription(true))
         }
 

@@ -7,9 +7,14 @@ import android.widget.Toast;
 
 import com.baidu.lbsapi.BMapManager;
 import com.baidu.lbsapi.MKGeneralListener;
+import com.baidu.mapapi.CoordType;
+import com.baidu.mapapi.SDKInitializer;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 
+/**
+ *AppName
+ */
 public class BaseApplication extends Application {
 
     public static Context myApplication;
@@ -19,6 +24,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         myApplication = getApplicationContext();
+        SDKInitializer.initialize(myApplication);
+        SDKInitializer.setCoordType(CoordType.BD09LL);
         SpeechUtility.createUtility(myApplication, SpeechConstant.APPID +"=580d7027");
         initEngineManager(this);
     }

@@ -24,4 +24,10 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
+    <!-- 缩放动画 -->
+    <style name="animScale" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/push_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/push_scale_out</item>
+    </style>
+
 </resources>

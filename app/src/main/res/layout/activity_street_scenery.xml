@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.baidu.lbsapi.panoramaview.PanoramaView
-        android:id="@+id/panorama"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true" />
 
-</LinearLayout>
+    <fragment
+        android:id="@+id/frag_pan"
+        class="com.example.test0.fragment.PanFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <fragment
+        android:layout_alignParentBottom="true"
+        android:id="@+id/frag_map"
+        class="com.example.test0.fragment.MapFragment"
+        android:layout_width="200dp"
+        android:layout_height="250dp" />
+
+    <TextView
+        android:id="@+id/tvBack"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:text="返回"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

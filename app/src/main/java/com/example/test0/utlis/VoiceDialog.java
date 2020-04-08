@@ -1,28 +1,24 @@
 package com.example.test0.utlis;
 
 import android.app.Dialog;
-import android.bluetooth.le.ScanRecord;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.example.test0.R;
 import com.example.test0.adapter.VoiceDiaNaVAdapter;
 import com.example.test0.adapter.VoiceReplyAdapter;
 import com.example.test0.bean.VoiceNavBean;
 import com.example.test0.bean.VoiceReplyBean;
-import com.iflytek.cloud.SpeechRecognizer;
+import com.example.test0.view.VolumeWaveView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,6 +40,7 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
     private MyDialogListener listener;
     private RecyclerView reply_recycle;
     private LinearLayout llExamples;
+    private VolumeWaveView volumeWaveView;
 
     public VoiceDialog(@NonNull Context context, int themeResId, MyDialogListener listener) {
         super(context, themeResId);
@@ -73,7 +70,7 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_voice);
-
+        getWindow().setWindowAnimations(R.style.animScale);
         viewLeft = findViewById(R.id.viewLeft);
         viewTop = findViewById(R.id.viewTop);
         viewBottom = findViewById(R.id.viewBottom);
@@ -82,21 +79,20 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
         image_start = findViewById(R.id.image_start);
         reply_recycle = findViewById(R.id.reply_recycle);
         llExamples = findViewById(R.id.llExamples);
+        volumeWaveView = findViewById(R.id.volumeWaveView);
         viewLeft.setOnClickListener(this);
         viewTop.setOnClickListener(this);
         viewBottom.setOnClickListener(this);
         viewRight.setOnClickListener(this);
         image_start.setOnClickListener(this);
-
+        volumeWaveView.setOnClickListener(this);
         initView();
     }
-
 
     @Override
     public void onClick(View v) {
         listener.onClick(v);
     }
-
 
     private void initView() {
         mData.add(new VoiceNavBean("查天气", "快速获取当前位置天气情况"));
@@ -112,7 +108,6 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
                     case R.id.rlItem:
                         Toast.makeText(context, mData.get(position).getMessage(), Toast.LENGTH_SHORT).show();
                         break;
-
                 }
             }
         });
