@@ -19,9 +19,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.example.test0.activity.StreetSceneryActivity
-import com.example.test0.activity.WebActivity
-import com.example.test0.activity.WebInfoActivity
+import com.example.test0.activity.*
 import com.example.test0.adapter.StreetMainAdapter
 import com.example.test0.base.NetConstants
 import com.example.test0.bean.VoiceReplyBean
@@ -43,7 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var strListGoverment: MutableList<String> =
         mutableListOf("街道简介", "问卷调查", "留言建议", "投票管理", "在线办事") //政务服务数据
     var strListParty: MutableList<String> = mutableListOf("党务中心", "活动中心", "学习中心") //党建平台数据
-    var strListPublicity: MutableList<String> = mutableListOf("党务中心", "活动中心", "学习中心") //宣传平台数据
+    var strListPublicity: MutableList<String> = mutableListOf("走进我们", "新闻中心") //宣传平台数据
     var strListForPeople: MutableList<String> = mutableListOf("交通状况", "通知公告", "疫情信息") //便民服务数据
     var strListGis: MutableList<String> = mutableListOf("街道实景", "建筑物信息") //便民服务数据
     var requestQueue: RequestQueue? = null
@@ -51,6 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var weatherNowBean: WeatherNowBean? = null
     var basePath :String ="英协路智慧街道云平台/"
     var forPeoplePath :String ="便民服务/"
+    var PublicityPath :String ="宣传平台/"
     //讯飞语音识别相关参数
     var mIat: SpeechRecognizer? = null
     //语音dialog中的控件 记得在dialog后去findviewbyId
@@ -71,6 +70,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         requestQueue = Volley.newRequestQueue(this)
         rl_listen.setOnClickListener(this)
+        rel_weather.setOnClickListener(this)
         recycle_government.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
         recycle_government.isNestedScrollingEnabled =false
@@ -84,7 +84,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         recycle_publicity.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListPublicity, 2)
         recycle_publicity.adapter = streetMainAdapter
-
+        streetMainAdapter!!.onItemChildClickListener=BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+            when (view.id) {
+                R.id.rl_bg -> {
+                    when (strListPublicity[position]) {
+                        "走进我们" ->{
+                            var intent = Intent(this,InOursActivity::class.java)
+                            intent.putExtra("path","$basePath${PublicityPath}走进我们")
+                            startActivity(intent)
+                        }
+                    }
+                }
+            }
+        }
 
         recycle_for_people.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListForPeople, 2)
@@ -243,6 +255,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 volumeWaveView = voiceDialog!!.findViewById(R.id.volumeWaveView)
                 image_start = voiceDialog!!.findViewById(R.id.image_start)
 
+            }
+            R.id.rel_weather ->{
+                var intent = Intent(this, WeatherActivity::class.java)
+                intent.putExtra("path","${basePath}天气详情")
+                startActivity(intent)
             }
         }
     }

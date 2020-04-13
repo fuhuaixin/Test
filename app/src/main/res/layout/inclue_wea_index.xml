@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:text="生活指数"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvIndex1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="指数:" />
+
+        <TextView
+            android:id="@+id/tvLevel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvIndex1"
+            android:text="等级"
+            android:textColor="@color/title_blue" />
+
+        <TextView
+            android:id="@+id/tvDesc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIndex1"
+            android:text="提示信息" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvIndex2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="指数:" />
+
+        <TextView
+            android:id="@+id/tvLeve2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvIndex2"
+            android:text="等级"
+            android:textColor="@color/title_blue" />
+
+        <TextView
+            android:id="@+id/tvDesc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIndex2"
+            android:text="提示信息" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvIndex3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="指数:" />
+
+        <TextView
+            android:id="@+id/tvLeve3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvIndex3"
+            android:text="等级"
+            android:textColor="@color/title_blue" />
+
+        <TextView
+            android:id="@+id/tvDesc3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIndex3"
+            android:text="提示信息" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvIndex4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="指数:" />
+
+        <TextView
+            android:id="@+id/tvLeve4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvIndex4"
+            android:text="等级"
+            android:textColor="@color/title_blue" />
+
+        <TextView
+            android:id="@+id/tvDesc4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIndex4"
+            android:text="提示信息" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvIndex5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="指数:" />
+
+        <TextView
+            android:id="@+id/tvLeve5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvIndex5"
+            android:text="等级"
+            android:textColor="@color/title_blue" />
+
+        <TextView
+            android:id="@+id/tvDesc5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIndex5"
+            android:text="提示信息" />
+    </RelativeLayout>
+</LinearLayout>

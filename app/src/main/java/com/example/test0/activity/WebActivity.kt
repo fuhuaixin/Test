@@ -18,13 +18,14 @@ import kotlinx.android.synthetic.main.inclue_web_title.*
  */
 class WebActivity : BaseActivity() {
 
-    var stringExtraUrl: String = ""
+    var strUrl: String = ""
     var strPath: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webh5)
 //        stringExtraUrl =
         strPath = intent.getStringExtra("path")
+        strUrl =intent.getStringExtra("url")
         tvPath.text = strPath
         dialog()
         var mWebSettings: WebSettings = webView.getSettings();
@@ -41,7 +42,7 @@ class WebActivity : BaseActivity() {
 //        mWebSettings.setMediaPlaybackRequiresUserGesture(false);//播放音频，多媒体需要用户手动？设置为false为可自动播放
 
 //        Toast.makeText(this,intent.getStringExtra("url"),Toast.LENGTH_SHORT).show()
-        webView.loadUrl(intent.getStringExtra("url"));
+        webView.loadUrl(strUrl);
 
         //设置不用系统浏览器打开,直接显示在当前Webview
         webView.webViewClient = object : WebViewClient() {

@@ -29,8 +29,11 @@ class NetConstants {
 
         //查询天气接口
         const val WeatherUrl ="https://tianqiapi.com/api?version=v6&appid=52796525&appsecret=2cBrl3hs&city=郑州"
+        //七日天气接口
+        const val WeatherDaysUrl ="https://tianqiapi.com/api?version=v1&appid=52796525&appsecret=2cBrl3hs&city=郑州"
         //实时疫情接口
         const val NowEpidemicUrl ="http://api.tianapi.com/txapi/ncov/index?key=8a14a867077fe537998673034bde9774"
+
 
     }
 }

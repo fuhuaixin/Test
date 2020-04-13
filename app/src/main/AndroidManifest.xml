@@ -80,7 +80,14 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
+        <activity android:name=".activity.WeatherActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.InOursActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
     </application>
 

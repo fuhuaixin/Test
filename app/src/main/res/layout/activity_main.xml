@@ -222,12 +222,15 @@
             <TextView
                 android:id="@+id/tv_big_data"
                 android:background="@drawable/shape_bg_big_data"
-                android:padding="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:layout_centerInParent="true"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:text="智慧大数据"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
@@ -248,12 +251,15 @@
                 android:src="@drawable/ic_street" />
             <TextView
                 android:background="@drawable/shape_bg_city_street"
-                android:padding="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:layout_centerInParent="true"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:text="街道网格"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
@@ -264,6 +270,7 @@
             android:layout_height="match_parent" />
 
         <RelativeLayout
+            android:id="@+id/rel_weather"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -279,8 +286,8 @@
                 android:layout_alignParentRight="true"
                 android:id="@+id/image_little_wea"
                 android:src="@drawable/icon_qing"
-                android:layout_width="32dp"
-                android:layout_height="32dp"/>
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
             <LinearLayout
                 android:layout_marginBottom="10dp"
                 android:layout_alignParentBottom="true"
@@ -292,7 +299,7 @@
 
                     android:textStyle="bold"
                     android:textColor="#ffffff"
-                    android:textSize="24sp"
+                    android:textSize="26sp"
                     android:text="23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -302,7 +309,7 @@
                     android:layout_alignParentBottom="true"
                     android:textStyle="bold"
                     android:textColor="#ffffff"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="°C  晴"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
