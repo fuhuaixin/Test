@@ -11,7 +11,6 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import com.alibaba.fastjson.JSON
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -27,7 +26,7 @@ import com.example.test0.bean.WeatherNowBean
 import com.example.test0.utlis.JsonParser
 import com.example.test0.utlis.NoScrollerGridLayoutManager
 import com.example.test0.utlis.ToastUtils
-import com.example.test0.utlis.VoiceDialog
+import com.example.test0.view.VoiceDialog
 import com.example.test0.view.VolumeWaveView
 import com.iflytek.cloud.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,14 +46,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var requestQueue: RequestQueue? = null
     var voiceDialog: VoiceDialog? = null
     var weatherNowBean: WeatherNowBean? = null
-    var basePath :String ="英协路智慧街道云平台/"
-    var forPeoplePath :String ="便民服务/"
-    var PublicityPath :String ="宣传平台/"
+    var basePath: String = "英协路智慧街道云平台/"
+    var forPeoplePath: String = "便民服务/"
+    var PublicityPath: String = "宣传平台/"
     //讯飞语音识别相关参数
     var mIat: SpeechRecognizer? = null
     //语音dialog中的控件 记得在dialog后去findviewbyId
-    var volumeWaveView :VolumeWaveView ?=null
-    var image_start :ImageView ?=null
+    var volumeWaveView: VolumeWaveView? = null
+    var image_start: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -73,30 +72,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rel_weather.setOnClickListener(this)
         recycle_government.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
-        recycle_government.isNestedScrollingEnabled =false
+        recycle_government.isNestedScrollingEnabled = false
         recycle_government.adapter = streetMainAdapter
 
         recycle_party.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListParty, 2)
-        recycle_party.isNestedScrollingEnabled =false
+        recycle_party.isNestedScrollingEnabled = false
         recycle_party.adapter = streetMainAdapter
 
         recycle_publicity.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListPublicity, 2)
         recycle_publicity.adapter = streetMainAdapter
-        streetMainAdapter!!.onItemChildClickListener=BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
-            when (view.id) {
-                R.id.rl_bg -> {
-                    when (strListPublicity[position]) {
-                        "走进我们" ->{
-                            var intent = Intent(this,InOursActivity::class.java)
-                            intent.putExtra("path","$basePath${PublicityPath}走进我们")
-                            startActivity(intent)
+        streetMainAdapter!!.onItemChildClickListener =
+            BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+                when (view.id) {
+                    R.id.rl_bg -> {
+                        when (strListPublicity[position]) {
+                            "走进我们" -> {
+                                var intent = Intent(this, InOursActivity::class.java)
+                                intent.putExtra("path", "$basePath${PublicityPath}走进我们")
+                                startActivity(intent)
+                            }
                         }
                     }
                 }
             }
-        }
 
         recycle_for_people.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListForPeople, 2)
@@ -114,13 +114,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 intent.putExtra(
                                     "url",
 //                                    "https://news.ifeng.com/c/special/7uLj4F83Cqm"
-                                    "https://alihealth.taobao.com/medicalhealth/influenzamap")
-                                intent.putExtra("path","$basePath${forPeoplePath}疫情信息")
+                                    "https://alihealth.taobao.com/medicalhealth/influenzamap"
+                                )
+                                intent.putExtra("path", "$basePath${forPeoplePath}疫情信息")
                                 startActivity(intent)
                             }
                             "通知公告" -> {
-                                var intent =Intent(this,WebInfoActivity::class.java)
-                                intent.putExtra("path","$basePath${forPeoplePath}通知公告")
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${forPeoplePath}通知公告")
                                 startActivity(intent)
                             }
                         }
@@ -149,7 +150,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             }
 
-        voiceDialog = VoiceDialog(this, R.style.CustomDialog, myDialogListener)
+        voiceDialog = VoiceDialog(
+            this,
+            R.style.CustomDialog,
+            myDialogListener
+        )
 
     }
 
@@ -256,9 +261,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 image_start = voiceDialog!!.findViewById(R.id.image_start)
 
             }
-            R.id.rel_weather ->{
+            R.id.rel_weather -> {
                 var intent = Intent(this, WeatherActivity::class.java)
-                intent.putExtra("path","${basePath}天气详情")
+                intent.putExtra("path", "${basePath}天气详情")
                 startActivity(intent)
             }
         }
@@ -279,17 +284,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    /* fun PostTest(){
-         var map = TreeMap<String,String>()
-         map["name"] = "chaychan"
-         map["age"] = "22 years old"
-         map["hobby"] = "programming";
-         HttpUtil.getInstance().request(this,url,map,object :HttpCallBack<>)
-     }*/
-
     private val myDialogListener: VoiceDialog.MyDialogListener =
         VoiceDialog.MyDialogListener { view ->
-//            view.findViewById<>(R.id.).visibility =View.VISIBLE
+            //            view.findViewById<>(R.id.).visibility =View.VISIBLE
             when (view!!.id) {
                 R.id.image_start -> {
                     Log.e("fhxx", "点击了start")
@@ -298,8 +295,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     mIat!!.setParameter(SpeechConstant.ACCENT, "mandarin")
                     mIat!!.setParameter(SpeechConstant.ASR_PTT, "0")
                     mIat!!.startListening(mRecognizerListener)
-                    volumeWaveView!!.visibility =View.VISIBLE
-                    image_start!!.visibility =View.GONE
+                    volumeWaveView!!.visibility = View.VISIBLE
+                    image_start!!.visibility = View.GONE
                 }
                 R.id.viewRight,
                 R.id.viewTop,
@@ -337,8 +334,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             etMessage.requestFocus();
             //将光标定位到文字最后，以便修改
             etMessage.setSelection(stringBuffer.length);
-            if (isLast){
-                EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(),1))
+            if (isLast) {
+                EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(), 1))
             }
 
         }
@@ -360,11 +357,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         override fun onEndOfSpeech() {
             Log.d("fhxx", "结束说话")
 //            ToastUtils.show("结束说话")
-            volumeWaveView!!.visibility =View.GONE
-            image_start!!.visibility =View.VISIBLE
+            volumeWaveView!!.visibility = View.GONE
+            image_start!!.visibility = View.VISIBLE
         }
 
         override fun onError(speechError: SpeechError?) {
+            volumeWaveView!!.visibility = View.GONE
+            image_start!!.visibility = View.VISIBLE
+            ToastUtils.show("录音失败")
             // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
             Log.d("fhxx", speechError!!.getPlainDescription(true))
         }

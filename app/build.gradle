@@ -27,9 +27,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets{
-        main{
-            jniLibs.srcDirs =['libs']
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
         }
     }
 
@@ -48,17 +48,22 @@ dependencies {
     implementation 'com.mcxiaoke.volley:library:1.0.+'
     implementation 'com.alibaba:fastjson:1.1.70.android'
     implementation 'com.alibaba:fastjson:1.2.55'
+    implementation 'com.google.code.gson:gson:2.8.2'
     //权限
     implementation 'pub.devrel:easypermissions:2.0.0'
+    //recyclerview
     implementation 'com.android.support:recyclerview-v7:29.0.3'
     //recyclerview helper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
-    implementation 'com.google.code.gson:gson:2.8.2'
+    //讯飞语音识别
     implementation files('libs/Msc.jar')
+    //百度地图 + 全景地图
     implementation files('libs/BaiduLBS_Android.jar')
     implementation files('libs/IndoorscapeAlbumPlugin.jar')
     //加载中。。。
     implementation 'com.zyao89:zloading:1.2.0'
     //eventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
+    //侧滑退出
+    implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
 }

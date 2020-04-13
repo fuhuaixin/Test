@@ -1,7 +1,8 @@
-package com.example.test0.utlis;
+package com.example.test0.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,10 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.test0.R;
+import com.example.test0.activity.StreetSceneryActivity;
+import com.example.test0.activity.WeatherActivity;
 import com.example.test0.adapter.VoiceDiaNaVAdapter;
 import com.example.test0.adapter.VoiceReplyAdapter;
 import com.example.test0.bean.VoiceNavBean;
 import com.example.test0.bean.VoiceReplyBean;
+import com.example.test0.utlis.NoScrollerLinearLayoutManager;
+import com.example.test0.utlis.ToastUtils;
 import com.example.test0.view.VolumeWaveView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -106,13 +111,25 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rlItem:
-                        Toast.makeText(context, mData.get(position).getMessage(), Toast.LENGTH_SHORT).show();
+                        switch (position) {
+                            case 0: {
+                                intoWeather();
+                                break;
+                            }
+                            case 1: {
+                                intoLocation();
+                                break;
+                            }
+                            case 2: {
+                                break;
+                            }
+                        }
                         break;
                 }
             }
         });
 
-        reply_recycle.setLayoutManager(new LinearLayoutManager(context));
+        reply_recycle.setLayoutManager(new NoScrollerLinearLayoutManager(context));
         voiceReplyAdapter = new VoiceReplyAdapter(mReplyData);
         reply_recycle.setAdapter(voiceReplyAdapter);
 
@@ -160,9 +177,9 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
                     case R.id.rlItem:
                         String message1 = mReplyData.get(position).getMessage();
                         if (message1.equals("去天气的界面")) {
-                            ToastUtils.show("点击了---》去天气的界面");
+                            intoWeather();
                         } else if (message1.equals("去位置的界面")) {
-                            ToastUtils.show("点击了---》去位置的界面");
+                            intoLocation();
                         } else if (message1.equals("去在线办事的界面")) {
                             ToastUtils.show("点击了---》去在线办事的界面");
                         }
@@ -170,5 +187,18 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
                 }
             }
         });
+    }
+
+    private void intoWeather() {
+        Intent intent = new Intent(context, WeatherActivity.class);
+        intent.putExtra("path", "英协路智慧街道云平台/天气详情");
+        context.startActivity(intent);
+        dismiss();
+    }
+
+    private void intoLocation() {
+        Intent intent = new Intent(context, StreetSceneryActivity.class);
+        context.startActivity(intent);
+        dismiss();
     }
 }
