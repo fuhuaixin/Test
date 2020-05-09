@@ -1,6 +1,8 @@
 package com.example.test0
 
 import android.Manifest
+import android.app.StatusBarManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -47,6 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var voiceDialog: VoiceDialog? = null
     var weatherNowBean: WeatherNowBean? = null
     var basePath: String = "英协路智慧街道云平台/"
+    var streetMainPath :String ="政务服务/"
     var forPeoplePath: String = "便民服务/"
     var PublicityPath: String = "宣传平台/"
     //讯飞语音识别相关参数
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var image_start: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         GetPermission()
         mIat = SpeechRecognizer.createRecognizer(this, mInitListener)
@@ -74,6 +78,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
         recycle_government.isNestedScrollingEnabled = false
         recycle_government.adapter = streetMainAdapter
+        streetMainAdapter!!.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+            when(view?.id){
+                R.id.rl_bg->{
+                    when(strListGoverment[position]){
+                        "街道简介"->{
+                            var intent = Intent(this, WebActivity::class.java)
+                            intent.putExtra(
+                                "url",
+//                                    "https://news.ifeng.com/c/special/7uLj4F83Cqm"
+                                "http://zzjswll.hnzwfw.gov.cn/art/2019/8/27/art_54262_6347.html"
+                            )
+                            intent.putExtra("path", "$basePath${streetMainPath}街道简介")
+                            startActivity(intent)
+                        }
+                    }
+                }
+            }
+        }
 
         recycle_party.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListParty, 2)
@@ -91,6 +113,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             "走进我们" -> {
                                 var intent = Intent(this, InOursActivity::class.java)
                                 intent.putExtra("path", "$basePath${PublicityPath}走进我们")
+                                startActivity(intent)
+                            }
+                            "新闻中心" ->{
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${PublicityPath}新闻中心")
+                                intent.putExtra("type","新闻中心")
                                 startActivity(intent)
                             }
                         }
@@ -122,6 +150,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             "通知公告" -> {
                                 var intent = Intent(this, WebInfoActivity::class.java)
                                 intent.putExtra("path", "$basePath${forPeoplePath}通知公告")
+                                intent.putExtra("type","通知公告")
                                 startActivity(intent)
                             }
                         }

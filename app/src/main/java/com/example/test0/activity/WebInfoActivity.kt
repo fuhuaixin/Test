@@ -34,6 +34,7 @@ class WebInfoActivity : BaseActivity() {
     var webInfoAdapter: WebInfoAdapter? = null
     var mData: MutableList<WebInfoBean> = mutableListOf()
     var strPath: String = ""
+    var strType: String = ""
 
     override fun setLayoutId(): Int {
         return R.layout.activity_web_info
@@ -43,76 +44,98 @@ class WebInfoActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         EventBus.getDefault().register(this)
 
-        httpPost()
     }
 
-    fun httpPost() {
-        // 1 创建一个请求队列
-        val requestQueue = Volley.newRequestQueue(this)
-
-        // 2 创建一个post请求
-        val url = "http://api.m.mtime.cn/PageSubArea/TrailerList.api"
-        var hashMap = HashMap<String, String>()
-        hashMap.put("key","value1")
-//        map["name"] = "chaychan"
-//        map["age"] = "22 years old"
-//        map["hobby"] = "programming";
-//        var jsonObject = JSONObject(hashMap as Map<String, Any>?) //把map转换为json
-
-   /*     val stringRequest: StringRequest =
-            object : StringRequest(
-                Method.POST, url,
-                Response.Listener<String?> { s -> Log.e("fhxx", s.toString()) },
-                Response.ErrorListener { volleyError -> Log.e("fhxx", volleyError.message) }) {
-                @Throws(AuthFailureError::class)
-                override fun getParams(): Map<String, String> {
-//                      map.put("value1","param1");
-                    return hashMap
-                }
-            }*/
-
-
-        // 3 将post请求添加到队列中
-//        requestQueue.add(jsonObjectRequest)
-    }
 
     override fun initView() {
         dialog()
 
         strPath = intent.getStringExtra("path")
+        strType = intent.getStringExtra("type")
         tvPath.text = strPath
-
-        for (i in 0 until 20) {
-            if (i === 0) {
-                mData.add(
-                    WebInfoBean(
-                        "title$i",
-                        "time$i",
-                        "https://www.toutiao.com/a6812749554228658696/",
-                        1
-                    )
-                )
-            } else if (i === 1) {
-                mData.add(
-                    WebInfoBean(
-                        "title$i",
-                        "time$i",
-                        "https://www.toutiao.com/a6812788999149584904/",
-                        1
-                    )
-                )
-            } else {
-                mData.add(
-                    WebInfoBean(
-                        "title$i",
-                        "time$i",
-                        "https://www.toutiao.com/a6812788999149584904/",
-                        1
-                    )
-                )
+        when (strType) {
+            "通知公告" -> {
+                for (i in 0 until 20) {
+                    when (i) {
+                        0 -> {
+                            mData.add(
+                                WebInfoBean(
+                                    "title$i",
+                                    "time$i",
+                                    "https://www.toutiao.com/a6812749554228658696/",
+                                    1
+                                )
+                            )
+                        }
+                        1 -> {
+                            mData.add(
+                                WebInfoBean(
+                                    "title$i",
+                                    "time$i",
+                                    "https://www.toutiao.com/a6812788999149584904/",
+                                    1
+                                )
+                            )
+                        }
+                        else -> {
+                            mData.add(
+                                WebInfoBean(
+                                    "title$i",
+                                    "time$i",
+                                    "https://www.toutiao.com/a6812788999149584904/",
+                                    1
+                                )
+                            )
+                        }
+                    }
+                }
             }
+            "新闻中心" -> {
+                mData.add(
+                    WebInfoBean(
+                        "第一报道 | 习近平：只有构建人类命运共同体才是人间正道",
+                        "2020-05-08",
+                        "http://www.xinhuanet.com/world/2020-05/08/c_1210609072.htm",
+                        1
+                    )
+                )
+                mData.add(
+                    WebInfoBean(
+                        "中共中央政治局常务委员会召开会议 习近平主持",
+                        "2020-05-06",
+                        "http://www.xinhuanet.com/politics/leaders/2020-05/06/c_1125949374.htm",
+                        1
+                    )
+                )
+                mData.add(
+                    WebInfoBean(
+                        "习近平寄语新时代青年并向全国各族青年致以节日的祝贺和诚挚的问候",
+                        "2020-05-03",
+                        "http://www.xinhuanet.com/politics/leaders/2020-05/03/c_1125938927.htm",
+                        1
+                    )
+                )
+                mData.add(
+                    WebInfoBean(
+                        "习近平同葡萄牙总统德索萨通电话",
+                        "2020-05-07",
+                        "http://www.xinhuanet.com/politics/leaders/2020-05/07/c_1125954499.htm",
+                        1
+                    )
+                )
+                mData.add(
+                    WebInfoBean(
+                        "习近平同乌兹别克斯坦总统米尔济约耶夫通电话",
+                        "2020-05-07",
+                        "http://www.xinhuanet.com/politics/leaders/2020-05/07/c_1125954497.htm",
+                        1
+                    )
+                )
 
+            }
         }
+
+
 
         mData[0].isChoose = 2
         web_recycle.layoutManager = LinearLayoutManager(this)

@@ -62,7 +62,6 @@ class WebActivity : BaseActivity() {
         }
 
         llBack.setOnClickListener {
-            ToastUtils.show("点击了返回")
             finish();
         }
     }
