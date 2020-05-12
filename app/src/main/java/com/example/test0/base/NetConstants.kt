@@ -11,9 +11,10 @@ class NetConstants {
 //        const val BASE_URL_PAY = "https://www.chengshizhichuang.com:9701/"//正式环境-支付
 
         //开发环境
-        const val BASE_URL = "http://192.168.10.133:8089/"//开发环境
-        const val BASE_URL_PAY = "http://192.168.130.131:9701/"//开发环境-支付
+        const val BASE_URL = "http://192.168.10.104:8080/"//开发环境
 
+        //办事指南前缀
+        const val OnlineWorkBase =  "http://192.168.10.104:8080/zhjd/onlinework.html?id="
 
         //测试环境
 //        const val BASE_URL = "http://192.168.130.39/"//测试环境
@@ -33,6 +34,9 @@ class NetConstants {
         const val WeatherDaysUrl ="https://tianqiapi.com/api?version=v1&appid=52796525&appsecret=2cBrl3hs&city=郑州"
         //实时疫情接口
         const val NowEpidemicUrl ="http://api.tianapi.com/txapi/ncov/index?key=8a14a867077fe537998673034bde9774"
+        //获取在线办事列表
+        const val GovinfoListUrl =  BASE_URL+"zhjd/server/govinfo/list"
+
 
 
     }

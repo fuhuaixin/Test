@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/inclue_web_title"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvTitle"
+                android:textStyle="bold"
+                android:text="资源设施"
+                android:textSize="18sp"
+                android:textColor="@color/tvColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+                <View
+                    android:layout_marginTop="7dp"
+                    android:background="@color/title_blue"
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"/>
+                <TextView
+                    android:id="@+id/tvContent"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/tvColor"
+                    android:textSize="16sp"
+                    android:text="【土地资源】金水区总面积136.66平方公里，主要分为：（1）耕地1327.3公顷，占全区土地面积的0.097%。在耕地面积中，有灌溉水田17公顷，水浇地1051.4公顷，旱地258.9公顷。（2）园地225.5公顷，占全区土地面积的0.017%，全部为果园。（3）林地409.3公顷，占全区土地面积的0.03%。其中有林地260.9公顷，其他林地148.4公顷。（4）草地68.95公顷，占全区土地面积的0.005%，全部为其他草地"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+</LinearLayout>

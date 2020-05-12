@@ -2,6 +2,7 @@ package com.example.test0.activity
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.view.KeyEvent
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -32,8 +33,8 @@ class WebActivity : BaseActivity() {
         mWebSettings.javaScriptCanOpenWindowsAutomatically =
             true;//设置js可以直接打开窗口，如window.open()，默认为false
         mWebSettings.javaScriptEnabled = true;//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
-        mWebSettings.setSupportZoom(true);//是否可以缩放，默认true
-        mWebSettings.builtInZoomControls = true;//是否显示缩放按钮，默认false
+        mWebSettings.setSupportZoom(false);//是否可以缩放，默认true
+        mWebSettings.builtInZoomControls = false;//是否显示缩放按钮，默认false
         mWebSettings.useWideViewPort = true;//设置此属性，可任意比例缩放。大视图模式
         mWebSettings.loadWithOverviewMode = true;//和setUseWideViewPort(true)一起解决网页自适应问题
         mWebSettings.setAppCacheEnabled(true);//是否使用缓存
@@ -64,6 +65,12 @@ class WebActivity : BaseActivity() {
         llBack.setOnClickListener {
             finish();
         }
+
+        Handler().postDelayed({
+            if (dialog!=null){
+                dialog!!.dismiss()
+            }
+        },2000)
     }
 
     override fun setLayoutId(): Int {

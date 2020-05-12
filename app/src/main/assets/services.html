@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="layui.css">
+    <title>便民服务</title>
+
+    <style>
+        div {
+            width: 100%;
+        }
+        
+        h1 {
+            box-shadow: .0625rem black;
+        }
+        
+        .zhus {}
+        /* .layui-table {
+            color: #fff;
+        }
+        
+     
+        
+        .jiudian tr:nth-child(2n) {
+            background: #79C48C
+        }
+        
+        .jiudian tr:nth-child(2n-1) {
+            background: #63ba79
+        } */
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center;padding-top:10px;">便民服务</h1>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>酒店信息</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>郑州中中宾馆燕庄店 </td>
+                <td>(0371)69086774</td>
+                <td>河南省郑州市金水区英协路与福元路燕庄新区11号楼3楼304
+                </td>
+            </tr>
+            <tr>
+                <td>郑州鑫源宾馆(燕庄新村店)
+                </td>
+                <td>15378790116 </td>
+                <td>河南省郑州市金水区福元路与英协路交叉口燕庄新区11号楼103室
+                </td>
+            </tr>
+            <tr>
+                <td>郑州青春客栈新鑫花园店
+                </td>
+                <td>17603953320 </td>
+                <td>河南省郑州市金水区英协路金水路向南50米路东新鑫花园小区11号楼6楼
+                </td>
+            </tr>
+            <tr>
+                <td>福之源酒店
+                </td>
+                <td>(0371)55572168
+                </td>
+                <td>河南省郑州市金水区燕庄华悦时间广场(福元路南)
+                </td>
+            </tr>
+            <tr>
+                <td>友好宾馆(燕庄新村店)
+                </td>
+                <td>(0371)69086744
+                </td>
+                <td>河南省郑州市金水区英协路与福元路交汇处向东50米路南(燕庄新村8号楼2单元2层)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>美食信息</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>茶士</td>
+                <td>15188349085
+                </td>
+                <td>河南省郑州市金水区唐人街文化广场D区178
+                </td>
+            </tr>
+            <tr>
+                <td>阿五黄河大鲤鱼(英协路店)
+                </td>
+                <td>(0371)65850888
+                </td>
+                <td>河南省郑州市金水区金水路与英协路交叉口
+                </td>
+            </tr>
+            <tr>
+                <td>粗粮烙馍村(福元路店)
+                </td>
+                <td>15639729791 </td>
+                <td>英协路53号院燕庄新区4号楼门面房
+                </td>
+            </tr>
+            <tr>
+                <td>厨乡大煎包(英协路店)
+                </td>
+                <td>(0371)69527888
+                </td>
+                <td>金水路与英协路交叉口向南300米
+                </td>
+            </tr>
+            <tr>
+                <td>鼎鼎红火锅(英协路店)
+                </td>
+                <td>(0371)86185888
+                </td>
+                <td>英协路华悦时间广场1层
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>房产租售信息</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>新鑫花园-5栋</td>
+                <td>郑州市金水区新鑫花园5栋
+                </td>
+            </tr>
+            <tr>
+                <td>燕庄新区南区-14号楼
+                </td>
+                <td>郑州市金水区丽都花园14号楼
+                </td>
+            </tr>
+            <tr>
+                <td>新鑫花园-26栋
+                </td>
+                <td>郑州市金水区新鑫花园26栋
+                </td>
+            </tr>
+            <tr>
+                <td>锦程山庄-2号楼
+                </td>
+                <td>英协路668号
+                </td>
+            </tr>
+            <tr>
+                <td>丽都花园老区
+                </td>
+                <td>河南省郑州市金水区燕庄丽都花园燕庄(新区南区)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>商超购物</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>合和昌(郑州授权经销商)
+                </td>
+                <td>13837143628
+                </td>
+                <td>唐人街文化广场D区106-108
+                </td>
+            </tr>
+            <tr>
+                <td>老裁缝家纺(英协路店)
+                </td>
+                <td>(0371)66521072
+                </td>
+                <td>英协路景程山庄附近
+                </td>
+            </tr>
+            <tr>
+                <td>景雅
+                </td>
+                <td>(0371)53376550
+                </td>
+                <td>商城路唐人街文化广场D257
+                </td>
+            </tr>
+            <tr>
+                <td>克丽缇娜(金水区旗舰店)
+
+                </td>
+                <td>(0371)56708869
+
+                </td>
+                <td>郑州市金水区天佑小区北门
+
+                </td>
+            </tr>
+            <tr>
+                <td>清文专业女子美容中心
+
+                </td>
+                <td>13939010961
+
+                </td>
+                <td>英协路与福元路交叉口燕庄新区北苑5号楼6层603
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>组织机构</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>中共郑州市金水区未来路街道燕庄村燕庄支部委员会
+                </td>
+                <td>福元路51号附近
+                </td>
+            </tr>
+            <tr>
+                <td>燕庄村租房信息登记处
+                </td>
+                <td>郑州市金水区鼎鼎红(英协店)英协路福元路燕庄西门11号楼1楼
+                </td>
+            </tr>
+            <tr>
+                <td>未来路分局燕庄新区警务室
+                </td>
+                <td>郑州市金水区建业路6号
+                </td>
+            </tr>
+            <tr>
+                <td>郑州市金水区未来路街道办事处燕庄花园社区居民委员会
+                </td>
+                <td>河南省郑州市金水区建业路6号西北90米
+                </td>
+            </tr>
+            <tr>
+                <td>郑州市餐饮与饭店行业协会
+                </td>
+                <td>河南省郑州市金水区金水路139号
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>写字楼信息</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>伟业世纪
+
+                </td>
+                <td>河南省郑州市金水区英协路26号西60米
+
+                </td>
+            </tr>
+            <tr>
+                <td>伟业大厦(商城东路)
+
+                </td>
+                <td>河南省郑州市金水区英协路50
+
+                </td>
+            </tr>
+            <tr>
+                <td>盛润白宫
+
+                </td>
+                <td>郑州市金水区金水路219号
+
+                </td>
+            </tr>
+            <tr>
+                <td>传媒创意中心
+
+                </td>
+                <td>河南省郑州市金水区英协路56号
+
+                </td>
+            </tr>
+            <tr>
+                <td>盛润国际广场-东塔
+
+                </td>
+                <td>金水路219号
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>医疗机构</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>益康药房(天佑店)
+                </td>
+                <td>未来路街道英协路56号天佑小区北门商铺
+                </td>
+            </tr>
+            <tr>
+                <td>初见伊人全体态健康管理中心
+                </td>
+                <td>河南省郑州市金水区河北东路4号
+                </td>
+            </tr>
+            <tr>
+                <td>民心医药(福元路店)
+                </td>
+                <td>河南省郑州市金水区金水路233-14
+                </td>
+            </tr>
+            <tr>
+                <td>福乐康大药房(英协路店)
+                </td>
+                <td>河南省郑州市金水区锦程山庄(英协路东)
+                </td>
+            </tr>
+            <tr>
+                <td>谢金建中西医结合诊所
+                </td>
+                <td>河南省郑州市金水区沈北路燕庄新区9栋3单元103号
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>金融服务</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>招商银行(福元路支行)
+                </td>
+                <td>河南省郑州市金水区燕庄福元路银基王朝东南门
+                </td>
+            </tr>
+            <tr>
+                <td>中原银行24小时自助银行(金水路)
+
+                </td>
+                <td>河南省郑州市金水区金水路盛润国际广场(新鑫花园北50米)
+                </td>
+            </tr>
+            <tr>
+                <td>郑州银行24小时自助银行(润景时代东北)
+                </td>
+                <td>河南省郑州市金水区商城东路5号附近
+                </td>
+            </tr>
+            <tr>
+                <td>中国农业银行24小时自助银行(商城东路)
+                </td>
+                <td>郑州市金水区商城东路258号附近
+                </td>
+            </tr>
+            <tr>
+                <td>河南世纪金海投资发展有限公司
+                </td>
+                <td>英协路50号伟业世纪5层
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>休闲健身</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>哈珀亲子游泳俱乐部(银基王朝店)
+                </td>
+                <td>(0371)56666003
+                </td>
+                <td>河南省郑州市金水区福元路银基王朝四期东南御
+                </td>
+            </tr>
+            <tr>
+                <td>K-EMS黑科技健身(银基王朝店)
+                </td>
+                <td>15516030888
+                </td>
+                <td>河南省郑州市金水区金水路银基王朝一期三号楼3002
+                </td>
+            </tr>
+            <tr>
+                <td>管氏金水桶足浴(英协路店)
+                </td>
+                <td>(0371)55892777
+                </td>
+                <td>河南省郑州市金水区英协路50苑-15号
+                </td>
+            </tr>
+            <tr>
+                <td>奕一舞蹈工作室
+                </td>
+                <td>13700851747
+                </td>
+                <td>丽都花园11号楼2层201室
+                </td>
+            </tr>
+            <tr>
+                <td>禹惠空中瑜伽会馆(英协路店)
+                </td>
+                <td>17324819556
+                </td>
+                <td>河南省郑州市金水路英协路新鑫花园22号楼四单元9楼东户
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>生活服务</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>它说宠物生活馆
+                </td>
+                <td>15537109337
+                </td>
+                <td>河南省郑州市金水区商城东路与凤台北路交叉口向东100米路北
+                </td>
+            </tr>
+            <tr>
+                <td>艾润堂养生馆
+                </td>
+                <td>18703995901
+                </td>
+                <td>金水路英协路新鑫花园十号楼一层
+                </td>
+            </tr>
+            <tr>
+                <td>数码快印
+                </td>
+                <td>18530996949
+                </td>
+                <td>未来路街道英协路与福元路交叉口向南一百米路东
+                </td>
+            </tr>
+            <tr>
+                <td>小李精修电动车(福元路店)
+                </td>
+                <td>18638602622
+                </td>
+                <td>河南省郑州市金水区福元路丽都花园燕庄(新区北区)
+                </td>
+            </tr>
+            <tr>
+                <td>菜鸟驿站(郑州银基王朝1期6号楼店)
+
+                </td>
+                <td>
+                </td>
+                <td>河南省郑州市金水区未来路街道郑州市金水区未来路街道金水东路233号银基王朝1期6号楼王朝超市店
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>汽车服务</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>神州租车(盛润国际广场停车网点)
+                </td>
+                <td>
+                </td>
+                <td>神州租车(盛润国际广场停车网点)
+                </td>
+            </tr>
+            <tr>
+                <td>豫涛汽修(建业路店)
+                </td>
+                <td>18037770585
+                </td>
+                <td>河南省郑州市金水区建业路26号附近
+                </td>
+            </tr>
+            <tr>
+                <td>瑞福华养护中心(威固隔热膜专营店)
+
+                </td>
+                <td>(0371)66533555
+
+                </td>
+                <td>英协路鑫园小区
+
+                </td>
+            </tr>
+            <tr>
+                <td>车之尚养护中心
+
+                </td>
+                <td>(0371)66533555
+
+                </td>
+                <td>河南省郑州市金水区商城东路4号院附近
+                </td>
+            </tr>
+            <tr>
+                <td>完美服务中心
+                </td>
+                <td>
+                </td>
+                <td>英协路西福元路南天佑小区北门
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px; ">
+        <legend>公司信息</legend>
+    </fieldset>
+    <table class="layui-table jiudian" lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>河南北斗
+
+                </td>
+                <td>
+                </td>
+                <td>河南省郑州市金水区商城东路268号
+
+                </td>
+            </tr>
+            <tr>
+                <td>中国联合网络通信公司(河南省分公司)
+                </td>
+                <td>
+                </td>
+                <td>未来路街道金水路229号
+                </td>
+            </tr>
+            <tr>
+                <td>郑州蜜匠婚礼
+                </td>
+                <td>
+                </td>
+                <td>金水路139号
+                </td>
+            </tr>
+            <tr>
+                <td>宏昌盛茶厂
+                </td>
+                <td>
+                </td>
+                <td>河南省郑州市金水区建业路九曲兰亭(唐人街文化广场西街北
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>

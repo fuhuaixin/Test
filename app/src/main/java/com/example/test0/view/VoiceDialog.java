@@ -15,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.test0.R;
+import com.example.test0.activity.ChiefPublicActivity;
 import com.example.test0.activity.StreetSceneryActivity;
 import com.example.test0.activity.WeatherActivity;
 import com.example.test0.adapter.VoiceDiaNaVAdapter;
 import com.example.test0.adapter.VoiceReplyAdapter;
+import com.example.test0.bean.CheifPubTitleBean;
 import com.example.test0.bean.VoiceNavBean;
 import com.example.test0.bean.VoiceReplyBean;
 import com.example.test0.utlis.NoScrollerLinearLayoutManager;
@@ -121,6 +123,7 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
                                 break;
                             }
                             case 2: {
+                                intoOnline();
                                 break;
                             }
                         }
@@ -181,7 +184,7 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
                         } else if (message1.equals("去位置的界面")) {
                             intoLocation();
                         } else if (message1.equals("去在线办事的界面")) {
-                            ToastUtils.show("点击了---》去在线办事的界面");
+                            intoOnline();
                         }
                         break;
                 }
@@ -189,6 +192,9 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
         });
     }
 
+    /**
+     * 去天气界面
+     */
     private void intoWeather() {
         Intent intent = new Intent(context, WeatherActivity.class);
         intent.putExtra("path", "英协路智慧街道云平台/天气详情");
@@ -196,8 +202,21 @@ public class VoiceDialog extends Dialog implements View.OnClickListener {
         dismiss();
     }
 
+    /**
+     * 去定位界面
+     */
     private void intoLocation() {
         Intent intent = new Intent(context, StreetSceneryActivity.class);
+        context.startActivity(intent);
+        dismiss();
+    }
+
+    /**
+     * 去办事界面
+     */
+    private void intoOnline() {
+        Intent intent = new Intent(context, ChiefPublicActivity.class);
+        intent.putExtra("path", "英协路智慧街道云平台/政务服务/在线办事");
         context.startActivity(intent);
         dismiss();
     }

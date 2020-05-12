@@ -25,6 +25,11 @@ class WebInfoAdapter (data:MutableList<WebInfoBean>):
         var rlItem = helper.getView<RelativeLayout>(R.id.rlItem)
         var imageInto = helper.getView<ImageView>(R.id.imageInto)
 
+        if (item.date == ""){
+            tvTime.visibility =View.GONE
+        }else{
+            tvTime.visibility =View.VISIBLE
+        }
 
         if (item.isChoose==2){
             tvTime.setTextColor(Color.parseColor("#ffffff"))

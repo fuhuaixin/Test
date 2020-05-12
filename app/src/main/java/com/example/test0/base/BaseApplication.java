@@ -58,9 +58,7 @@ public class BaseApplication extends Application {
 //                        "请在AndoridManifest.xml中输入正确的授权Key,并检查您的网络连接是否正常！error: "
 //                                + iError, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(
-                        myApplication, "key认证成功",
-                        Toast.LENGTH_LONG).show();
+                Log.e("fhxx","key认证成功");
             }
         }
     }

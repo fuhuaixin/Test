@@ -40,18 +40,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     var streetMainAdapter: StreetMainAdapter? = null
     var strListGoverment: MutableList<String> =
-        mutableListOf("街道简介", "问卷调查", "留言建议", "投票管理", "在线办事") //政务服务数据
+        mutableListOf("街道简介", "问卷调查", "留言建议", "投票管理", "在线办事", "政策法规") //政务服务数据
     var strListParty: MutableList<String> = mutableListOf("党务中心", "活动中心", "学习中心") //党建平台数据
     var strListPublicity: MutableList<String> = mutableListOf("走进我们", "新闻中心") //宣传平台数据
-    var strListForPeople: MutableList<String> = mutableListOf("交通状况", "通知公告", "疫情信息") //便民服务数据
+    var strListForPeople: MutableList<String> = mutableListOf("便民服务", "通知公告", "疫情信息") //便民服务数据
     var strListGis: MutableList<String> = mutableListOf("街道实景", "建筑物信息") //便民服务数据
     var requestQueue: RequestQueue? = null
     var voiceDialog: VoiceDialog? = null
     var weatherNowBean: WeatherNowBean? = null
     var basePath: String = "英协路智慧街道云平台/"
-    var streetMainPath :String ="政务服务/"
+    var streetMainPath: String = "政务服务/"
     var forPeoplePath: String = "便民服务/"
     var PublicityPath: String = "宣传平台/"
+    var partyPath: String = "党建平台/"
     //讯飞语音识别相关参数
     var mIat: SpeechRecognizer? = null
     //语音dialog中的控件 记得在dialog后去findviewbyId
@@ -74,34 +75,91 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         requestQueue = Volley.newRequestQueue(this)
         rl_listen.setOnClickListener(this)
         rel_weather.setOnClickListener(this)
+        rl_big_data.setOnClickListener(this)
+        rl_street_gird.setOnClickListener(this)
         recycle_government.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
         recycle_government.isNestedScrollingEnabled = false
         recycle_government.adapter = streetMainAdapter
-        streetMainAdapter!!.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
-            when(view?.id){
-                R.id.rl_bg->{
-                    when(strListGoverment[position]){
-                        "街道简介"->{
-                            var intent = Intent(this, WebActivity::class.java)
-                            intent.putExtra(
-                                "url",
+        streetMainAdapter!!.onItemChildClickListener =
+            BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+                when (view?.id) {
+                    R.id.rl_bg -> {
+                        when (strListGoverment[position]) {
+                            "街道简介" -> {
+                                var intent = Intent(this, WebActivity::class.java)
+                                intent.putExtra(
+                                    "url",
 //                                    "https://news.ifeng.com/c/special/7uLj4F83Cqm"
-                                "http://zzjswll.hnzwfw.gov.cn/art/2019/8/27/art_54262_6347.html"
-                            )
-                            intent.putExtra("path", "$basePath${streetMainPath}街道简介")
-                            startActivity(intent)
+                                    "http://zzjswll.hnzwfw.gov.cn/art/2019/8/27/art_54262_6347.html"
+                                )
+                                intent.putExtra("path", "$basePath${streetMainPath}街道简介")
+                                startActivity(intent)
+                            }
+                            "问卷调查" -> {
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}问卷调查")
+                                intent.putExtra("type", "问卷调查")
+                                startActivity(intent)
+                            }
+                            "投票管理" -> {
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}投票管理")
+                                intent.putExtra("type", "投票管理")
+                                startActivity(intent)
+                            }
+                            "政策法规" -> {
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}政策法规")
+                                intent.putExtra("type", "政策法规")
+                                startActivity(intent)
+                            }
+                            "留言建议"->{
+                                var intent = Intent(this, FeedBackActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}留言建议")
+                                startActivity(intent)
+                            }
+                            "在线办事"->{
+                                var intent = Intent(this, ChiefPublicActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}在线办事")
+                                startActivity(intent)
+                            }
                         }
                     }
                 }
             }
-        }
 
         recycle_party.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListParty, 2)
         recycle_party.isNestedScrollingEnabled = false
         recycle_party.adapter = streetMainAdapter
-
+        streetMainAdapter!!.onItemChildClickListener =
+            BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+                when (view.id) {
+                    R.id.rl_bg -> {
+                        when (strListParty[position]) {
+                            "学习中心" -> {
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${partyPath}学习中心")
+                                intent.putExtra("type", "学习中心")
+                                startActivity(intent)
+                            }
+                            "党务中心" -> {
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${partyPath}党务中心")
+                                intent.putExtra("type", "党务中心")
+                                startActivity(intent)
+                            }
+                            "活动中心" -> {
+                                var intent = Intent(this, WebInfoActivity::class.java)
+                                intent.putExtra("path", "$basePath${partyPath}活动中心")
+                                intent.putExtra("type", "活动中心")
+                                startActivity(intent)
+                            }
+                        }
+                    }
+                }
+            }
         recycle_publicity.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListPublicity, 2)
         recycle_publicity.adapter = streetMainAdapter
@@ -115,10 +173,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 intent.putExtra("path", "$basePath${PublicityPath}走进我们")
                                 startActivity(intent)
                             }
-                            "新闻中心" ->{
+                            "新闻中心" -> {
                                 var intent = Intent(this, WebInfoActivity::class.java)
                                 intent.putExtra("path", "$basePath${PublicityPath}新闻中心")
-                                intent.putExtra("type","新闻中心")
+                                intent.putExtra("type", "新闻中心")
                                 startActivity(intent)
                             }
                         }
@@ -137,6 +195,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 when (view.id) {
                     R.id.rl_bg -> {
                         when (strListForPeople[position]) {
+                            "便民服务" -> {
+                                var intent = Intent(this, WebActivity::class.java)
+                                intent.putExtra(
+                                    "url",
+                                    "file:////android_asset/services.html"
+                                )
+                                intent.putExtra("path", "$basePath${forPeoplePath}便民服务")
+                                startActivity(intent)
+                            }
                             "疫情信息" -> {
                                 var intent = Intent(this, WebActivity::class.java)
                                 intent.putExtra(
@@ -150,7 +217,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             "通知公告" -> {
                                 var intent = Intent(this, WebInfoActivity::class.java)
                                 intent.putExtra("path", "$basePath${forPeoplePath}通知公告")
-                                intent.putExtra("type","通知公告")
+                                intent.putExtra("type", "通知公告")
                                 startActivity(intent)
                             }
                         }
@@ -170,6 +237,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         when (strListGis[position]) {
                             "街道实景" -> {
                                 var intent = Intent(this, StreetSceneryActivity::class.java)
+                                startActivity(intent)
+                            }
+                            "建筑物信息"->{
+                                var intent = Intent(this, WebActivity::class.java)
+                                intent.putExtra(
+                                    "url",
+                                    "${NetConstants.BASE_URL}zhjd/earthstreet.html"
+                                )
+                                intent.putExtra("path", "${basePath}GIS地图/建筑物信息")
                                 startActivity(intent)
                             }
 
@@ -294,6 +370,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 var intent = Intent(this, WeatherActivity::class.java)
                 intent.putExtra("path", "${basePath}天气详情")
                 startActivity(intent)
+            }
+            R.id.rl_big_data->{
+                ToastUtils.show("暂未开放")
+            }
+            R.id.rl_street_gird ->{
+                ToastUtils.show("暂未开放")
             }
         }
     }

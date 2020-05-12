@@ -27,190 +27,193 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="15dp">
+
                 <ImageView
-                    android:src="@drawable/icon_trans"
                     android:layout_width="wrap_content"
-                    android:layout_height="80dp"/>
+                    android:layout_height="80dp"
+                    android:src="@drawable/icon_trans" />
+
                 <LinearLayout
-                    android:padding="15dp"
-                    android:background="@color/lineColor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:background="@color/white">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/image_walk_to_us_intro" />
+                    android:background="@color/lineColor"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:padding="15dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:background="@color/white">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="4"
-                            android:text="英协社区位于河南省郑州市金水区，成立于2003年12月底，位于郑州市郑汴路138号，社区东临建业路，西靠英协路，北依熊耳河，南至郑汴路，面积0.21平方公里。社区现有工作人员8人，共有常住住户512户，总人数.."
-                            android:textSize="12sp" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/image_walk_to_us_intro" />
 
-                        <TextView
-                            android:id="@+id/tvIntro"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/shape_bg_in_ours_more"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:text="查看更多"
-                            android:textColor="@color/title_blue"
-                            android:textSize="14sp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="4"
+                                android:text="英协社区现有工作人员8人，共有常住住户512户，总人数1100余人，流动人口430余人，辖区共有私营企业及个体商户56户。"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvIntro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/shape_bg_in_ours_more"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="5dp"
+                                android:text="查看更多"
+                                android:textColor="@color/title_blue"
+                                android:textSize="14sp" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:padding="15dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="4"
-                            android:text="英协社区位于河南省郑州市金水区，成立于2003年12月底，位于郑州市郑汴路138号，社区东临建业路，西靠英协路，北依熊耳河，南至郑汴路，面积0.21平方公里。社区现有工作人员8人，共有常住住户512户，总人数.."
-                            android:textSize="12sp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="15dp">
 
-                        <TextView
-                            android:id="@+id/tvLocation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/shape_bg_in_ours_more"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:text="查看更多"
-                            android:textColor="@color/title_blue"
-                            android:textSize="14sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="4"
+                                android:text="英协社区位于河南省郑州市金水区，成立于2003年12月底，位于郑州市郑汴路138号，社区东临建业路，西靠英协路，北依熊耳河，南至郑汴路，面积0.21平方公里。社区现有工作人员8人，共有常住住户512户，总人数.."
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/shape_bg_in_ours_more"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="5dp"
+                                android:text="查看更多"
+                                android:textColor="@color/title_blue"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/image_walk_to_us_loca" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/image_walk_to_us_loca" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:background="@color/white">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/image_walk_to_us_area" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:padding="15dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="4"
-                            android:text="社区建设新颖、布局合理、环境优美，是集别墅、多层、高层于一身的智能化高尚住宅小区，有64幢独立别墅、7幢公寓式别墅、19幢多层公寓楼、7幢高层，其中4幢商务楼。整体绿化面积近20万平方米..."
-                            android:textSize="12sp" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/image_walk_to_us_area" />
 
-                        <TextView
-                            android:id="@+id/tvArea"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/shape_bg_in_ours_more"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:text="查看更多"
-                            android:textColor="@color/title_blue"
-                            android:textSize="14sp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="4"
+                                android:text="金水区政府在城区设立17个街道办事处，作为派出机关，对所管辖区的行政和社会事务进行管理。17个街道办事处：文化路街道办事处、南阳新村街道办事处、经八路街道办事处、大石桥街道办事处、人民路街道办事处、花园路街道办事处、杜岭街道办事处、"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvArea"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/shape_bg_in_ours_more"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="5dp"
+                                android:text="查看更多"
+                                android:textColor="@color/title_blue"
+                                android:textSize="14sp" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:padding="15dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="4"
-                            android:text="长期以来，英协社区居委会在凤凰台街道党工委、街道办事处及辖区广大居民的的正确指导和大力支持下，社区全体工作人员团结一致，各尽职责，以服务居民为载体，以“诚实守信，共筑共建”为主题..."
-                            android:textSize="12sp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="15dp">
 
-                        <TextView
-                            android:id="@+id/tvEnergy"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/shape_bg_in_ours_more"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:text="查看更多"
-                            android:textColor="@color/title_blue"
-                            android:textSize="14sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="4"
+                                android:text="【土地资源】金水区总面积136.66平方公里;【水资源】 金水区水资源丰富，境内共有7条河流;【生物资源】 金水区生物类繁多，在农业生产中利用价值较高，并呈现养殖种类增加,农业役用大牲畜数量明显减少的趋势"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvEnergy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/shape_bg_in_ours_more"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="5dp"
+                                android:text="查看更多"
+                                android:textColor="@color/title_blue"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/image_walk_to_us_energy" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/image_walk_to_us_energy" />
-                </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

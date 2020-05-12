@@ -12,14 +12,6 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2020.3.2"
-            android:textColor="@color/tvColor"
-            android:textSize="14sp" />
-
-        <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,6 +21,15 @@
             android:text="标题"
             android:textColor="@color/tvColor"
             android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2020.3.2"
+            android:textColor="@color/tvColor"
+            android:textSize="14sp" />
+
+
 
         <ImageView
             android:id="@+id/imageInto"
