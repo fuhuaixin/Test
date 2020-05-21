@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
 import android.view.KeyEvent
+import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -29,9 +30,10 @@ class WebActivity : BaseActivity() {
         strUrl =intent.getStringExtra("url")
         tvPath.text = strPath
         dialog()
+        dialog!!.show()
+
         var mWebSettings: WebSettings = webView.getSettings();
-        mWebSettings.javaScriptCanOpenWindowsAutomatically =
-            true;//设置js可以直接打开窗口，如window.open()，默认为false
+        mWebSettings.javaScriptCanOpenWindowsAutomatically = true;//设置js可以直接打开窗口，如window.open()，默认为false
         mWebSettings.javaScriptEnabled = true;//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
         mWebSettings.setSupportZoom(false);//是否可以缩放，默认true
         mWebSettings.builtInZoomControls = false;//是否显示缩放按钮，默认false
@@ -44,12 +46,12 @@ class WebActivity : BaseActivity() {
 
 //        Toast.makeText(this,intent.getStringExtra("url"),Toast.LENGTH_SHORT).show()
         webView.loadUrl(strUrl);
+        webView.webChromeClient= WebChromeClient()
 
         //设置不用系统浏览器打开,直接显示在当前Webview
         webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                dialog!!.show()
             }
 
             override fun shouldOverrideUrlLoading(
@@ -57,8 +59,13 @@ class WebActivity : BaseActivity() {
                 url: String?
             ): Boolean {
                 view!!.loadUrl(url);
-                dialog!!.dismiss()
+
                 return true;
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                dialog!!.dismiss()
             }
         }
 
@@ -66,11 +73,11 @@ class WebActivity : BaseActivity() {
             finish();
         }
 
-        Handler().postDelayed({
+     /*   Handler().postDelayed({
             if (dialog!=null){
                 dialog!!.dismiss()
             }
-        },2000)
+        },2000)*/
     }
 
     override fun setLayoutId(): Int {

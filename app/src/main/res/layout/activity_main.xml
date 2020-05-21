@@ -102,31 +102,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_party" />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:id="@+id/recycle_party"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </RelativeLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -145,6 +120,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_engagement" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:id="@+id/recycle_party"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </RelativeLayout>
+
+
+
         </LinearLayout>
 
         <View
@@ -230,7 +230,7 @@
                 android:layout_centerInParent="true"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:text="智慧大数据"
+                android:text="娱乐"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -260,7 +260,7 @@
                 android:layout_centerInParent="true"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:text="街道网格"
+                android:text="每日一笑"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

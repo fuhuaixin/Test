@@ -22,7 +22,9 @@ import com.example.test0.utlis.ListUtils
 import com.example.test0.utlis.ToastUtils
 import kotlinx.android.synthetic.main.activity_chief_publice.*
 import kotlinx.android.synthetic.main.inclue_web_title.*
+import org.json.JSONObject
 import java.net.URLEncoder
+import java.util.*
 
 /**
  * 在线办事
@@ -41,6 +43,8 @@ class ChiefPublicActivity : BaseActivity() {
     }
 
     override fun initView() {
+        dialog()
+        dialog!!.show()
         requestQueue = Volley.newRequestQueue(this)
         stringExtra= intent.getStringExtra("path")
         tvPath.text = stringExtra
@@ -63,9 +67,15 @@ class ChiefPublicActivity : BaseActivity() {
 
     fun getMessage(category: String, type: String) {
         var url: String = NetConstants.GovinfoListUrl + "?category=${URLEncoder.encode(category)}"
+//        var url: String = NetConstants.GovinfoListUrl
+        Log.e("fhxx", category)
+        var jsonObject = JSONObject()
+        jsonObject.put("category",URLEncoder.encode(category,"UTF-8"))
         var jsonObjectRequest =
             JsonObjectRequest(Request.Method.GET, url, Response.Listener { response ->
+//            JsonObjectRequest(Request.Method.POST, url,jsonObject, Response.Listener { response ->
                 Log.e("fhxx", response.toString())
+                dialog!!.dismiss()
                 var listBean = JSON.parseObject(response.toString(), GovinfoListBean::class.java)
                 if (listBean.isStatus && listBean.data.size > 0) {
                     var data = listBean.data
@@ -97,8 +107,7 @@ class ChiefPublicActivity : BaseActivity() {
                     }
 
                 }
-            },
-                Response.ErrorListener {
+            }, Response.ErrorListener {
 
                 })
 
