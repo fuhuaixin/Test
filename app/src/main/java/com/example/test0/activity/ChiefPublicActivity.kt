@@ -64,13 +64,14 @@ class ChiefPublicActivity : BaseActivity() {
 
     var categoryList: MutableList<String>? = arrayListOf()
     var getCategoryList: MutableList<String> = arrayListOf()
-
     fun getMessage(category: String, type: String) {
-        var url: String = NetConstants.GovinfoListUrl + "?category=${URLEncoder.encode(category)}"
+        var chiefMap = mapOf("category" to URLEncoder.encode(category,"UTF-8"))
+
+        var url: String = NetConstants.GovinfoListUrl + "?category=${URLEncoder.encode(category,"UTF-8")}"
 //        var url: String = NetConstants.GovinfoListUrl
         Log.e("fhxx", category)
-        var jsonObject = JSONObject()
-        jsonObject.put("category",URLEncoder.encode(category,"UTF-8"))
+        var jsonObject = JSONObject(chiefMap)
+//        jsonObject.put("category",URLEncoder.encode(category,"UTF-8"))
         var jsonObjectRequest =
             JsonObjectRequest(Request.Method.GET, url, Response.Listener { response ->
 //            JsonObjectRequest(Request.Method.POST, url,jsonObject, Response.Listener { response ->

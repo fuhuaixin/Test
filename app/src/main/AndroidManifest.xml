@@ -112,6 +112,26 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.OpenDirectoryActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.NormativeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.LetterBoxActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.PublicNewsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.GovernmentActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

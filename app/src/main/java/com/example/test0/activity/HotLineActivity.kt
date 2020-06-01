@@ -15,6 +15,8 @@ class HotLineActivity :BaseActivity() {
     var communityAdapter:CommunityAdapter ?=null
     var mList :MutableList<CommunityBean> = mutableListOf()
 
+    var type:String =""
+
     override fun setLayoutId(): Int {
         return  R.layout.activity_hot_line
     }
@@ -22,23 +24,40 @@ class HotLineActivity :BaseActivity() {
     override fun initView() {
 
         tvPath.text=(intent.getStringExtra("path"))
+        type =intent.getStringExtra("type")
 
+        if (type == "community"){
+            tv_title.text ="社区热线"
+            mList.add(CommunityBean("街道办事处","电话","街道办事处","电话"))
+            mList.add(CommunityBean("文化路街道办事处","63936965","未来路街道办事处","65965194"))
+            mList.add(CommunityBean("经八路街道办事处","56805800","凤凰台街道办事处","66758705"))
+            mList.add(CommunityBean("大石桥街道办事处","63871900","杜岭街道办事处","66226811"))
+            mList.add(CommunityBean("兴达路街道办事处","68100001","南阳路街道办事处","63922822"))
+            mList.add(CommunityBean("丰产路街道办事处","69125111","北林路街道办事处","65744009"))
+            mList.add(CommunityBean("国基路街道办事处","65692201","丰庆路街道办事处","63560001"))
+            mList.add(CommunityBean("杨金路街道办事处","61992211","花园路街道办事处","65953245"))
+            mList.add(CommunityBean("人民路街道办事处","66226465","东风路街道办事处","63752058"))
+            mList.add(CommunityBean("南阳新村街道办事处","63731056","",""))
+        }else if (type=="department"){
+            tv_title.text ="区直电话"
+            mList.add(CommunityBean("办事处","电话","办事处","电话"))
+            mList.add(CommunityBean("政府办","63526200","事管局","63526186"))
+            mList.add(CommunityBean("创建办","63856140","司法局","63526147"))
+            mList.add(CommunityBean("人防办","66253288","工信局","63526244"))
+            mList.add(CommunityBean("农 委","63526417","自然资源局","66205666"))
+            mList.add(CommunityBean("审批中心","60130900","保障办","63931409"))
+            mList.add(CommunityBean("财政局","63526167","教体局","60116618"))
+            mList.add(CommunityBean("粮管中心","65957279","楼宇办","63605877"))
+            mList.add(CommunityBean("市场监督管理局","63935382","发改统计局","63526132"))
+            mList.add(CommunityBean("住建局","63526234","民政局","58579000"))
+            mList.add(CommunityBean("科技园区","86000600","行政执法局","63928110"))
+            mList.add(CommunityBean("文化旅游局","86086868","审计局","63526121"))
+            mList.add(CommunityBean("商务局","63526126","应急管理局","86000588"))
+            mList.add(CommunityBean("科技局","63526271","交通局","63733886"))
+            mList.add(CommunityBean("环保局","86000668","人社局","63526286"))
+            mList.add(CommunityBean("退役军人事务管理局","56539001","卫健委","58527939"))
+        }
 
-        mList.add(CommunityBean("机构名称","地址","乘车路线","电话"))
-        mList.add(CommunityBean("未来路街道办事处","未来路顺河路交叉口西南角","","65965194"))
-        mList.add(CommunityBean("燕庄社区居委会","建业路6号西北90米","64,285,52",""))
-        mList.add(CommunityBean("沈庄社区居委会","","",""))
-        mList.add(CommunityBean("聂庄社区居委会","纬五路与未来路交叉口","23，27","65996979"))
-        mList.add(CommunityBean("黑庄社区居委会","黑庄路口往东","","65675233"))
-        mList.add(CommunityBean("司家庄社区居委会","","",""))
-        mList.add(CommunityBean("东明路社区居委会","东明路北5号院","64，2，65，58，206，105","63350633"))
-        mList.add(CommunityBean("康复社区居委会","纬四路25号院或肿瘤医学院家属院13号1楼","40，58，2，205，105","65588292"))
-        mList.add(CommunityBean("金水花园社区居委会","老107国道和纬四路交叉口向西300米路北广发大厦对面","37，23，723","65615465"))
-        mList.add(CommunityBean("新鑫花园社区居委会","金水区与商贸路交叉口向南100米新鑫花园","26，77，209","68261655"))
-        mList.add(CommunityBean("民航路社区居委会","民航路26号楼","23，37，77","63380286"))
-        mList.add(CommunityBean("吉祥花园社区居委会","顺河路与燕沈路交叉口向南200米路西","23，58，65，105","66717072"))
-        mList.add(CommunityBean("广发花园社区居委会","燕黑路黑庄菜市场北门","23，37，206，916，26","63381866"))
-        mList.add(CommunityBean("锦江花园社区居委会","未来路北段73号院","23，206",""))
         recycle_line.layoutManager =LinearLayoutManager(this)
         communityAdapter = CommunityAdapter(mList)
         recycle_line.adapter =communityAdapter
@@ -48,8 +67,6 @@ class HotLineActivity :BaseActivity() {
         llBack.setOnClickListener {
             finish()
         }
-
-
     }
 
 }

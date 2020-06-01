@@ -8,6 +8,7 @@
     <include layout="@layout/inclue_web_title" />
 
     <LinearLayout
+        android:background="@drawable/ic_online_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,59 +16,80 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2" />
-
         <androidx.core.widget.NestedScrollView
-            android:background="@color/white"
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6">
+            android:layout_weight="4">
             <LinearLayout
-                android:padding="20dp"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="未来路街道简介"
-                    android:textColor="@color/tvColor"
-                    android:textSize="20sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:textStyle="bold|italic"
+                        android:textSize="25sp"
+                        android:textColor="@color/white"
+                        android:text="透明  公开  信任"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
 
-                <View
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@color/lineColor"
+                <LinearLayout
+                    android:background="@color/white"
+                    android:padding="20dp"
+                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="未来路街道简介"
+                        android:textColor="@color/tvColor"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    android:text="@string/street_intro_one"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    android:text="@string/street_intro_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    android:text="@string/street_intro_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    android:text="@string/street_intro_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    <View
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@color/lineColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="#666666"
+                        android:text="@string/street_intro_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="#666666"
+                        android:text="@string/street_intro_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="#666666"
+                        android:text="@string/street_intro_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="#666666"
+                        android:text="@string/street_intro_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+
 
 
         <View

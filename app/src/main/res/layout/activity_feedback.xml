@@ -1,64 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
     <include layout="@layout/inclue_web_title"/>
     <LinearLayout
+        android:background="@drawable/ic_online_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="6"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/shape_main_search_bg">
-
-                    <EditText
-                        android:id="@+id/et_message"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:gravity="left"
-                        android:hint="请输入反馈内容，我们会为您更好的服务"
-                        android:maxLength="400"
-                        android:padding="15dp"
-                        android:textColor="#333333"
-                        android:textColorHint="#999999"
-                        android:textSize="14sp" />
+                    android:layout_height="80dp">
 
                     <TextView
-                        android:id="@+id/tv_length"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_margin="15dp"
-                        android:text="0/400" />
+                        android:layout_centerInParent="true"
+                        android:text="美好英协靠大家"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold|italic" />
                 </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tv_commit"
-                    android:clickable="false"
+                <LinearLayout
+                    android:background="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/shape_commit_unsel"
-                    android:gravity="center"
-                    android:text="提交反馈"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:paddingLeft="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="15dp">
+
+                        <ImageView
+                            android:id="@+id/image_tel"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@mipmap/icon_qz_tel" />
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/image_tel"
+                            android:text="留言建议"
+                            android:textColor="#212121"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_title"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_toRightOf="@+id/image_tel"
+                            android:text="Message suggestions"
+                            android:textSize="7sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/shape_main_search_bg">
+
+                        <EditText
+                            android:id="@+id/et_message"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="@null"
+                            android:gravity="left"
+                            android:hint="请输入反馈内容，我们会为您更好的服务"
+                            android:maxLength="400"
+                            android:padding="15dp"
+                            android:textColor="#333333"
+                            android:textColorHint="#999999"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_length"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="15dp"
+                            android:text="0/400" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_commit"
+                        android:clickable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/shape_commit_unsel"
+                        android:gravity="center"
+                        android:text="提交反馈"
+                        android:textColor="@color/cl333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
             </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
 
         <View

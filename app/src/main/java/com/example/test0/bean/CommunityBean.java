@@ -6,12 +6,31 @@ public class CommunityBean {
     private String address;
     private String busLine;
     private String phone;
+    private String name2;
+    private String phone2;
 
-    public CommunityBean(String name, String address, String busLine, String phone) {
+
+    public CommunityBean(String name, String phone, String name2, String phone2) {
         this.name = name;
-        this.address = address;
-        this.busLine = busLine;
         this.phone = phone;
+        this.name2 = name2;
+        this.phone2 = phone2;
+    }
+
+    public String getName2() {
+        return name2;
+    }
+
+    public void setName2(String name2) {
+        this.name2 = name2;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
     }
 
     public String getName() {

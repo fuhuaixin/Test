@@ -8,8 +8,13 @@
     <color name="tvColor">#282828</color>
     <color name="tvHintColor">#9B9B9B</color>
     <color name="lineColor">#E7E7E7</color>
+    <color name="cle6">#E6E6E6</color>
     <color name="white">#ffffff</color>
     <color name="title_blue">#1C87F4</color>
     <color name="crF7">#F7F7F7</color>
+    <color name="cl666">#666666</color>
+    <color name="cl333">#333333</color>
+    <color name="cl999">#999999</color>
+    <color name="clF2">#F2F2F2</color>
 
 </resources>

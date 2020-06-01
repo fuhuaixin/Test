@@ -7,63 +7,69 @@
     android:orientation="vertical"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
-    android:paddingBottom="30dp"
+    android:paddingBottom="25dp"
     tools:context=".MainActivity">
 
 
     <LinearLayout
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
             <ImageView
-                android:layout_alignParentLeft="true"
-                android:src="@drawable/ic_logo_long"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_logo_long" />
         </RelativeLayout>
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="2"/>
+            android:layout_weight="2" />
+
         <LinearLayout
-            android:gravity="center_vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_vertical">
 
             <RelativeLayout
-                android:background="@drawable/ic_say_bg"
                 android:layout_width="0dp"
+                android:layout_height="18dp"
                 android:layout_weight="4"
-                android:layout_height="18dp">
+                android:background="@drawable/ic_say_bg">
 
-                <EditText
+                <TextView
                     android:id="@+id/etMessage"
-                    android:background="@null"
-                    android:textStyle="bold"
-                    android:textColor="#96A0AA"
-                    android:layout_marginLeft="9dp"
-                    android:layout_centerVertical="true"
-                    android:textSize="8sp"
-                    android:hint="您可以对我说“查看天气预报”"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="9dp"
+                    android:background="@null"
+                    android:hint="您可以对我说“查看天气预报”"
+                    android:textColor="#96A0AA"
+                    android:textSize="8sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_listen"
-                android:paddingLeft="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp">
+
                 <ImageView
-                    android:src="@drawable/icon_say_btn"
                     android:layout_width="20dp"
-                    android:layout_height="30dp"/>
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_say_btn" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -71,27 +77,75 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6">
-        <RelativeLayout
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_government" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:id="@+id/recycle_government"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </RelativeLayout>
+            android:layout_weight="1"
+            android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_government" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_government_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_government"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_open_mes"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_open_mes" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_open_mes_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_open_mes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <View
             android:layout_width="5dp"
@@ -102,49 +156,98 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_for_people" />
-                <androidx.recyclerview.widget.RecyclerView
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_for_people_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_for_people"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_engagement" />
-                <androidx.recyclerview.widget.RecyclerView
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_engagement_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_party"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
 
+            <RelativeLayout
+                android:id="@+id/rl_big_data"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_big_data" />
+
+                <TextView
+                    android:id="@+id/tv_big_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/shape_bg_big_data"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="娱乐活动"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
         </LinearLayout>
 
         <View
@@ -156,23 +259,33 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_publicity" />
-                <androidx.recyclerview.widget.RecyclerView
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_publicity_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_publicity"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp" />
             </RelativeLayout>
 
             <View
@@ -183,143 +296,94 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_gis" />
-                <androidx.recyclerview.widget.RecyclerView
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_gis_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_gis"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+
+            <RelativeLayout
+                android:id="@+id/rel_weather"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7">
+
+                <ImageView
+                    android:id="@+id/image_wea"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_qing" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_js_wea_text" />
+
+                <ImageView
+                    android:id="@+id/image_little_wea"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/icon_qing" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_tem"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="23"
+                        android:textColor="#ffffff"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_wea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@+id/tv_tem"
+                        android:text="°C  晴"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
-
-        <RelativeLayout
-            android:id="@+id/rl_big_data"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_big_data" />
-            <TextView
-                android:id="@+id/tv_big_data"
-                android:background="@drawable/shape_bg_big_data"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_centerInParent="true"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:text="娱乐"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
-
-
-        <View
-            android:layout_width="5dp"
-            android:layout_height="match_parent" />
-
-        <RelativeLayout
-            android:id="@+id/rl_street_gird"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_street" />
-            <TextView
-                android:background="@drawable/shape_bg_city_street"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_centerInParent="true"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:text="每日一笑"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
-
-
-        <View
-            android:layout_width="5dp"
-            android:layout_height="match_parent" />
-
-        <RelativeLayout
-            android:id="@+id/rel_weather"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/image_wea"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_qing" />
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentRight="true"
-                android:id="@+id/image_little_wea"
-                android:src="@drawable/icon_qing"
-                android:layout_width="40dp"
-                android:layout_height="40dp"/>
-            <LinearLayout
-                android:layout_marginBottom="10dp"
-                android:layout_alignParentBottom="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tv_tem"
-                    android:layout_marginLeft="20dp"
-
-                    android:textStyle="bold"
-                    android:textColor="#ffffff"
-                    android:textSize="26sp"
-                    android:text="23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/tv_wea"
-                    android:layout_toRightOf="@+id/tv_tem"
-                    android:layout_alignParentBottom="true"
-                    android:textStyle="bold"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp"
-                    android:text="°C  晴"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-        </RelativeLayout>
-        
-    </LinearLayout>
-
 
 </LinearLayout>

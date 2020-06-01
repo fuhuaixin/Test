@@ -43,12 +43,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     var streetMainAdapter: StreetMainAdapter? = null
     var strListGoverment: MutableList<String> =
-        mutableListOf("政务要闻", "通知公告", "政策法规", "在线办事") //政务服务数据
+        mutableListOf("政务要闻", "通知公告", "政策法规", "在线办事","政务文件") //政务服务数据
     //    var strListParty: MutableList<String> = mutableListOf("党务中心", "活动中心", "学习中心") //党建平台数据
-    var strListParty: MutableList<String> = mutableListOf("问卷调查", "留言建议", "投票管理") //公众参与
-    var strListPublicity: MutableList<String> = mutableListOf("街道简介", "走进我们", "新闻中心", "党史今天") //宣传平台数据
-    var strListForPeople: MutableList<String> = mutableListOf("便民服务", "疫情信息", "社区热线") //便民服务数据
+    var strListParty: MutableList<String> = mutableListOf("问卷调查", "留言建议", "投票管理","区长信箱") //公众参与
+    var strListPublicity: MutableList<String> = mutableListOf("街道简介", "走进我们", "新闻中心", "党史今天","政务动态") //宣传平台数据
+    var strListForPeople: MutableList<String> = mutableListOf("便民服务", "疫情信息", "社区热线","区直电话") //便民服务数据
     var strListGis: MutableList<String> = mutableListOf("街道实景", "建筑物信息") //便民服务数据
+    var strListOpen: MutableList<String> = mutableListOf("公开目录", "公开指南","规范性文件","依申请公开") //政府信息公开
 
     var gemeList: MutableList<String> = mutableListOf(
         "http://h.4399.com/play/213250.htm",
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var streetMainPath: String = "政务服务/"
     var forPeoplePath: String = "便民服务/"
     var PublicityPath: String = "宣传平台/"
-    var partyPath: String = "党建平台/"
+    var partyPath: String = "政府信息公开/"
     //讯飞语音识别相关参数
     var mIat: SpeechRecognizer? = null
     //语音dialog中的控件 记得在dialog后去findviewbyId
@@ -92,7 +93,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rl_listen.setOnClickListener(this)
         rel_weather.setOnClickListener(this)
         rl_big_data.setOnClickListener(this)
-        rl_street_gird.setOnClickListener(this)
+//        rl_street_gird.setOnClickListener(this)
+        etMessage.setOnClickListener(this)
         recycle_government.layoutManager = NoScrollerGridLayoutManager(this, 3)
         streetMainAdapter = StreetMainAdapter(this, strListGoverment, 1)
         recycle_government.isNestedScrollingEnabled = false
@@ -102,17 +104,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 when (view?.id) {
                     R.id.rl_bg -> {
                         when (strListGoverment[position]) {
+                            "政务要闻" -> {
+                                var intent = Intent(this, GovernmentActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}政务要闻")
+                                intent.putExtra("type", "政务要闻")
+                                startActivity(intent)
+                            }
                             "通知公告" -> {
-                                var intent = Intent(this, WebInfoActivity::class.java)
+                                var intent = Intent(this, GovernmentActivity::class.java)
                                 intent.putExtra("path", "$basePath${forPeoplePath}通知公告")
                                 intent.putExtra("type", "通知公告")
                                 startActivity(intent)
                             }
 
                             "政策法规" -> {
-                                var intent = Intent(this, WebInfoActivity::class.java)
+                                var intent = Intent(this, GovernmentActivity::class.java)
                                 intent.putExtra("path", "$basePath${streetMainPath}政策法规")
                                 intent.putExtra("type", "政策法规")
+                                startActivity(intent)
+                            }
+
+                            "政务文件" -> {
+                                var intent = Intent(this, GovernmentActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}政务文件")
+                                intent.putExtra("type", "政务文件")
                                 startActivity(intent)
                             }
 
@@ -135,24 +150,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 when (view.id) {
                     R.id.rl_bg -> {
                         when (strListParty[position]) {
-                            /* "学习中心" -> {
-                                 var intent = Intent(this, WebInfoActivity::class.java)
-                                 intent.putExtra("path", "$basePath${partyPath}学习中心")
-                                 intent.putExtra("type", "学习中心")
-                                 startActivity(intent)
-                             }
-                             "党务中心" -> {
-                                 var intent = Intent(this, WebInfoActivity::class.java)
-                                 intent.putExtra("path", "$basePath${partyPath}党务中心")
-                                 intent.putExtra("type", "党务中心")
-                                 startActivity(intent)
-                             }
-                             "活动中心" -> {
-                                 var intent = Intent(this, WebInfoActivity::class.java)
-                                 intent.putExtra("path", "$basePath${partyPath}活动中心")
-                                 intent.putExtra("type", "活动中心")
-                                 startActivity(intent)
-                             }*/
                             "问卷调查" -> {
                                 var intent = Intent(this, WebInfoActivity::class.java)
                                 intent.putExtra("path", "$basePath${streetMainPath}问卷调查")
@@ -168,6 +165,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             "留言建议" -> {
                                 var intent = Intent(this, FeedBackActivity::class.java)
                                 intent.putExtra("path", "$basePath${streetMainPath}留言建议")
+                                startActivity(intent)
+                            }
+                            "区长信箱" -> {
+                                var intent = Intent(this, LetterBoxActivity::class.java)
+                                intent.putExtra("path", "$basePath${streetMainPath}区长信箱")
                                 startActivity(intent)
                             }
                         }
@@ -186,6 +188,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 var intent = Intent(this, StreetIntroActivity::class.java)
 
                                 intent.putExtra("path", "$basePath${PublicityPath}街道简介")
+                                intent.putExtra("type", "街道简介")
                                 startActivity(intent)
                             }
                             "走进我们" -> {
@@ -194,9 +197,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 startActivity(intent)
                             }
                             "新闻中心" -> {
-                                var intent = Intent(this, WebInfoActivity::class.java)
+                                var intent = Intent(this, PublicNewsActivity::class.java)
                                 intent.putExtra("path", "$basePath${PublicityPath}新闻中心")
-                                intent.putExtra("type", "新闻中心")
+                                intent.putExtra("type", 1)
                                 startActivity(intent)
                             }
                             "党史今天" -> {
@@ -206,6 +209,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                     "http://cpc.people.com.cn/GB/64162/64165/79703/82260/index.html"
                                 )
                                 intent.putExtra("path", "$basePath${PublicityPath}党史今天")
+                                startActivity(intent)
+                            }
+                            "政务动态" -> {
+                                var intent = Intent(this, PublicNewsActivity::class.java)
+                                intent.putExtra("path", "$basePath${PublicityPath}政务动态")
+                                intent.putExtra("type", 2)
                                 startActivity(intent)
                             }
                         }
@@ -247,6 +256,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             "社区热线" -> {
                                 var intent = Intent(this, HotLineActivity::class.java)
                                 intent.putExtra("path", "$basePath${forPeoplePath}社区热线")
+                                intent.putExtra("type", "community")
+                                startActivity(intent)
+                            }
+                            "区直电话" -> {
+                                var intent = Intent(this, HotLineActivity::class.java)
+                                intent.putExtra("path", "$basePath${forPeoplePath}区直电话")
+                                intent.putExtra("type", "department")
                                 startActivity(intent)
                             }
                         }
@@ -278,6 +294,50 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 startActivity(intent)
                             }
 
+                        }
+                    }
+                }
+
+            }
+        recycle_open_mes.layoutManager = NoScrollerGridLayoutManager(this, 3)
+        streetMainAdapter = StreetMainAdapter(this, strListOpen, 2)
+        recycle_open_mes.adapter = streetMainAdapter
+        streetMainAdapter!!.onItemChildClickListener =
+            BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+
+                when (view.id) {
+                    R.id.rl_bg -> {
+                        when (strListOpen[position]) {
+                            "公开目录"->{
+                                var intent = Intent(this, OpenDirectoryActivity::class.java)
+
+                                intent.putExtra("path", "$basePath${partyPath}公开目录")
+                                intent.putExtra("type", "公开目录")
+                                startActivity(intent)
+                            }
+                            "公开指南" -> {
+                               var intent = Intent(this, StreetIntroActivity::class.java)
+
+                                intent.putExtra("path", "$basePath${partyPath}公开指南")
+                                intent.putExtra("type", "公开指南")
+                                startActivity(intent)
+
+                            }
+                            "依申请公开" -> {
+                                var intent = Intent(this, StreetIntroActivity::class.java)
+
+                                intent.putExtra("path", "$basePath${partyPath}依申请公开")
+                                intent.putExtra("type", "依申请公开")
+                                startActivity(intent)
+
+                            }
+//
+                            "规范性文件" -> {
+                                var intent = Intent(this, NormativeActivity::class.java)
+                                intent.putExtra("path", "$basePath${partyPath}规范性文件")
+                                startActivity(intent)
+
+                            }
                         }
                     }
                 }
@@ -382,6 +442,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            R.id.etMessage,
             R.id.rl_listen -> { //点击开始语音弹窗
                 voiceDialog!!.show()
                 var win = voiceDialog!!.window
@@ -408,12 +469,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 intent.putExtra("path", "${basePath}娱乐")
                 startActivity(intent)
             }
-            R.id.rl_street_gird -> {
 
-                var intent = Intent(this, LaughDailyActivity::class.java)
-                intent.putExtra("path", "${basePath}每日一笑")
-                startActivity(intent)
-            }
         }
     }
 
@@ -478,13 +534,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 stringBuffer.append(mIatResults[key])
             }
             etMessage.setText(stringBuffer.toString())
-            //获取焦点
+          /*  //获取焦点
             etMessage.requestFocus();
             //将光标定位到文字最后，以便修改
             etMessage.setSelection(stringBuffer.length);
             if (isLast) {
                 EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(), 1))
-            }
+            }*/
 
         }
 
