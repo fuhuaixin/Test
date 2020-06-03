@@ -3,6 +3,7 @@ package com.example.test0.activity
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.KeyEvent
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -24,8 +25,7 @@ class WebActivity : BaseActivity() {
     var strPath: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_webh5)
-//        stringExtraUrl =
+
         strPath = intent.getStringExtra("path")
         strUrl =intent.getStringExtra("url")
         tvPath.text = strPath
@@ -73,15 +73,15 @@ class WebActivity : BaseActivity() {
             finish();
         }
 
-     /*   Handler().postDelayed({
-            if (dialog!=null){
-                dialog!!.dismiss()
-            }
-        },2000)*/
+
     }
 
     override fun setLayoutId(): Int {
-        return R.layout.activity_webh5
+        if (intent.getStringExtra("path").indexOf("建筑物信息")==-1){
+            return R.layout.activity_webh5
+        }else{
+            return R.layout.activity_bim
+        }
     }
 
     override fun initView() {
@@ -101,16 +101,4 @@ class WebActivity : BaseActivity() {
 
     }
 
-    /*返回页
-    ll_friend.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              if (webView.canGoBack()) {
-                  webView.goBack();//返回上个页面
-                  return;
-              } else {
-                  finish();
-              }
-          }
-      });*/
 }

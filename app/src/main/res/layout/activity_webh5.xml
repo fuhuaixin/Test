@@ -8,6 +8,7 @@
     <include layout="@layout/inclue_web_title" />
 
     <LinearLayout
+        android:id="@+id/ll_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_online_bg">

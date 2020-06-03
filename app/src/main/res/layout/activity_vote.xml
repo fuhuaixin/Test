@@ -61,20 +61,20 @@
                             android:layout_marginRight="6dp"
                             android:layout_marginTop="10dp"
                             android:scaleType="fitXY"
-                            android:src="@mipmap/illustration_mail" />
+                            android:src="@mipmap/illustration_vote" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginTop="20dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginBottom="20dp"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="区长信箱"
+                                android:text="投票管理"
                                 android:textColor="@color/cl333"
                                 android:textSize="14sp" />
 
@@ -83,19 +83,48 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:text="共有0份信件"
+                                android:text="共有1份投票"
                                 android:textColor="@color/cl999"
                                 android:textSize="10sp" />
                         </LinearLayout>
 
                     </RelativeLayout>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="15dp"
+                        android:text="最热投票"
+                        android:textColor="@color/cl333"
+                        android:textSize="12sp" />
+
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle_let"
+                        android:id="@+id/recycle_hot_ques"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="15dp"
+                        android:text="所有投票"
+                        android:textColor="@color/cl333"
+                        android:textSize="12sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_all_ques"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/white" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -105,5 +134,4 @@
             android:layout_height="match_parent"
             android:layout_weight="2" />
     </LinearLayout>
-
 </LinearLayout>

@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_chief_publice.*
 import kotlinx.android.synthetic.main.inclue_web_title.*
 import org.json.JSONObject
 import java.net.URLEncoder
-import java.util.*
 
 /**
  * 在线办事
@@ -36,7 +35,7 @@ class ChiefPublicActivity : BaseActivity() {
     var titleAdapter: ChiefPubliceTitleAdapter? = null
     var messageAdapter: ChiefPubliceMessageAdapter? = null
     var requestQueue: RequestQueue? = null
-    var stringExtra:String =""
+    var stringExtra: String = ""
 
     override fun setLayoutId(): Int {
         return R.layout.activity_chief_publice
@@ -46,10 +45,9 @@ class ChiefPublicActivity : BaseActivity() {
         dialog()
         dialog!!.show()
         requestQueue = Volley.newRequestQueue(this)
-        stringExtra= intent.getStringExtra("path")
+        stringExtra = intent.getStringExtra("path")
         tvPath.text = stringExtra
         getMessage("", "all")
-
     }
 
     override fun initListener() {
@@ -65,16 +63,16 @@ class ChiefPublicActivity : BaseActivity() {
     var categoryList: MutableList<String>? = arrayListOf()
     var getCategoryList: MutableList<String> = arrayListOf()
     fun getMessage(category: String, type: String) {
-        var chiefMap = mapOf("category" to URLEncoder.encode(category,"UTF-8"))
-
-        var url: String = NetConstants.GovinfoListUrl + "?category=${URLEncoder.encode(category,"UTF-8")}"
+        var chiefMap = mapOf("category" to URLEncoder.encode(category, "UTF-8"))
+        var url: String =
+            NetConstants.GovinfoListUrl + "?category=${URLEncoder.encode(category, "UTF-8")}"
 //        var url: String = NetConstants.GovinfoListUrl
         Log.e("fhxx", category)
         var jsonObject = JSONObject(chiefMap)
 //        jsonObject.put("category",URLEncoder.encode(category,"UTF-8"))
         var jsonObjectRequest =
             JsonObjectRequest(Request.Method.GET, url, Response.Listener { response ->
-//            JsonObjectRequest(Request.Method.POST, url,jsonObject, Response.Listener { response ->
+                //            JsonObjectRequest(Request.Method.POST, url,jsonObject, Response.Listener { response ->
                 Log.e("fhxx", response.toString())
                 dialog!!.dismiss()
                 var listBean = JSON.parseObject(response.toString(), GovinfoListBean::class.java)
@@ -106,12 +104,10 @@ class ChiefPublicActivity : BaseActivity() {
                         }
                         setMessage()
                     }
-
                 }
             }, Response.ErrorListener {
 
-                })
-
+            })
         requestQueue!!.add(jsonObjectRequest)
     }
 
@@ -134,11 +130,8 @@ class ChiefPublicActivity : BaseActivity() {
                         titleAdapter!!.notifyDataSetChanged()
                         getMessage(titleList[position].title, "category")
                     }
-
-
                 }
             }
-
     }
 
     /**
@@ -160,7 +153,7 @@ class ChiefPublicActivity : BaseActivity() {
                         messageAdapter!!.notifyDataSetChanged()
                     }
                     R.id.tv_guide -> {
-                        Log.e("fhxx  当前",NetConstants.OnlineWorkBase + mesList[position].id)
+                        Log.e("fhxx  当前", NetConstants.OnlineWorkBase + mesList[position].id)
                         var intent = Intent(this, WebActivity::class.java)
                         intent.putExtra(
                             "url",
@@ -169,12 +162,11 @@ class ChiefPublicActivity : BaseActivity() {
                         intent.putExtra("path", "${stringExtra}/办事指南")
                         startActivity(intent)
                     }
-                    R.id.tv_online->{
+                    R.id.tv_online -> {
                         ToastUtils.show("暂未开发")
                     }
                 }
             }
-
     }
 
 }

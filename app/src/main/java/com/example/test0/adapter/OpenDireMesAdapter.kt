@@ -1,15 +1,10 @@
 package com.example.test0.adapter
 
 
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.test0.R
-import com.example.test0.bean.JokeBean
-import com.example.test0.bean.OpenDireBean
 import com.example.test0.bean.OpenDireMesBean
-import com.example.test0.bean.OpenDireTitleBean
 
 class OpenDireMesAdapter(data: MutableList<OpenDireMesBean>) :
     BaseQuickAdapter<OpenDireMesBean, BaseViewHolder>(

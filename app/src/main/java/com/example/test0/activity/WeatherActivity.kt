@@ -13,13 +13,10 @@ import com.example.test0.R
 import com.example.test0.base.BaseActivity
 import com.example.test0.base.NetConstants
 import com.example.test0.bean.WeatherDaysBean
-import com.example.test0.bean.WeatherPostBean
-import com.example.test0.utlis.ToastUtils
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.inclue_wea_index.*
 import kotlinx.android.synthetic.main.inclue_wea_week.*
 import kotlinx.android.synthetic.main.inclue_web_title.*
-import org.greenrobot.eventbus.EventBus
 
 class WeatherActivity : BaseActivity(), View.OnClickListener {
     var requestQueue: RequestQueue? = null

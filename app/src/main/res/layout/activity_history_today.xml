@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_online_bg">
+        android:background="@drawable/gov_page_bg">
 
         <View
             android:layout_width="0dp"
@@ -34,7 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="美好英协靠大家"
+                        android:text="党史上的今天"
                         android:textColor="@color/white"
                         android:textSize="25sp"
                         android:textStyle="bold|italic" />
@@ -45,55 +45,29 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#f2f2f2"
                         android:gravity="center_vertical">
 
-                        <ImageView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="6dp"
-                            android:layout_marginTop="10dp"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/illustration_mail" />
+                            android:text="党史上的今天"
+                            android:textColor="@color/cl333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="区长信箱"
-                                android:textColor="@color/cl333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tv_total"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="共有0份信件"
-                                android:textColor="@color/cl999"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle_let"
+                        android:id="@+id/recycle_history"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -105,5 +79,4 @@
             android:layout_height="match_parent"
             android:layout_weight="2" />
     </LinearLayout>
-
 </LinearLayout>

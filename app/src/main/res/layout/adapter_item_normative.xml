@@ -27,7 +27,7 @@
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@mipmap/icon_telphone" />
+            android:src="@mipmap/list_tr_icon_01" />
 
         <TextView
             android:id="@+id/tv_mes_jg"
@@ -41,7 +41,7 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginLeft="30dp"
-            android:src="@mipmap/icon_telphone" />
+            android:src="@mipmap/list_tr_icon_02" />
 
         <TextView
             android:id="@+id/tv_mes_time"

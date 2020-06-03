@@ -1,6 +1,7 @@
 package com.example.test0.activity
 
 import android.content.Intent
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.fastjson.JSON
 import com.android.volley.Request
@@ -16,12 +17,10 @@ import com.example.test0.adapter.PubNewsTitAdapter
 import com.example.test0.base.BaseActivity
 import com.example.test0.base.NetConstants
 import com.example.test0.bean.GovernmentBean
-import com.example.test0.bean.LetterBoxBean
 import com.example.test0.bean.OpenDireMesBean
 import com.example.test0.bean.OpenDireTitleBean
 import com.example.test0.utlis.ToastUtils
 import kotlinx.android.synthetic.main.activity_government.*
-import kotlinx.android.synthetic.main.activity_letter_box.*
 import kotlinx.android.synthetic.main.inclue_web_title.*
 
 /**
@@ -32,10 +31,10 @@ class GovernmentActivity : BaseActivity() {
     var titleAdapter: PubNewsTitAdapter? = null
     var mesAdapter: GoverMesAdapter? = null
     var titleList: MutableList<OpenDireTitleBean> = mutableListOf(
-        OpenDireTitleBean("政务要闻", false, R.mipmap.ic_launcher),
-        OpenDireTitleBean("通知公告", false, R.mipmap.ic_launcher),
-        OpenDireTitleBean("政策法规", false, R.mipmap.ic_launcher),
-        OpenDireTitleBean("政务文件", false, R.mipmap.ic_launcher)
+        OpenDireTitleBean("政务要闻", false, R.mipmap.gov_menu_icon_01),
+        OpenDireTitleBean("通知公告", false, R.mipmap.gov_menu_icon_02),
+        OpenDireTitleBean("政策法规", false, R.mipmap.gov_menu_icon_03),
+        OpenDireTitleBean("政务文件", false, R.mipmap.gov_menu_icon_05)
     )
 
     var mListMes: MutableList<OpenDireMesBean> = mutableListOf()
@@ -52,6 +51,10 @@ class GovernmentActivity : BaseActivity() {
         path = intent.getStringExtra("path")
         type = intent.getStringExtra("type")
 
+        Log.e("fhxx", "${path.indexOf("政务服务") != -1}")
+        if (path.indexOf("政务服务") != -1) {
+            ll_gov_bg.setBackgroundResource(R.drawable.gov_page_bg)
+        }
         getMessage()
         tvPath.text = path
 

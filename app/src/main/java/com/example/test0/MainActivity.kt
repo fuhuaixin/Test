@@ -43,13 +43,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     var streetMainAdapter: StreetMainAdapter? = null
     var strListGoverment: MutableList<String> =
-        mutableListOf("政务要闻", "通知公告", "政策法规", "在线办事","政务文件") //政务服务数据
-    //    var strListParty: MutableList<String> = mutableListOf("党务中心", "活动中心", "学习中心") //党建平台数据
-    var strListParty: MutableList<String> = mutableListOf("问卷调查", "留言建议", "投票管理","区长信箱") //公众参与
-    var strListPublicity: MutableList<String> = mutableListOf("街道简介", "走进我们", "新闻中心", "党史今天","政务动态") //宣传平台数据
-    var strListForPeople: MutableList<String> = mutableListOf("便民服务", "疫情信息", "社区热线","区直电话") //便民服务数据
+        mutableListOf("政务要闻", "通知公告", "政策法规", "在线办事", "政务文件") //政务服务数据
+    var strListParty: MutableList<String> = mutableListOf("问卷调查", "留言建议", "投票管理", "区长信箱") //公众参与
+    var strListPublicity: MutableList<String> =
+        mutableListOf("街道简介", "走进我们", "新闻中心", "党史今天", "政务动态") //宣传平台数据
+    var strListForPeople: MutableList<String> =
+        mutableListOf("便民服务", "疫情信息", "社区热线", "区直电话") //便民服务数据
     var strListGis: MutableList<String> = mutableListOf("街道实景", "建筑物信息") //便民服务数据
-    var strListOpen: MutableList<String> = mutableListOf("公开目录", "公开指南","规范性文件","依申请公开") //政府信息公开
+    var strListOpen: MutableList<String> = mutableListOf("公开目录", "公开指南", "规范性文件", "依申请公开") //政府信息公开
 
     var gemeList: MutableList<String> = mutableListOf(
         "http://h.4399.com/play/213250.htm",
@@ -112,7 +113,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             }
                             "通知公告" -> {
                                 var intent = Intent(this, GovernmentActivity::class.java)
-                                intent.putExtra("path", "$basePath${forPeoplePath}通知公告")
+                                intent.putExtra("path", "$basePath${streetMainPath}通知公告")
                                 intent.putExtra("type", "通知公告")
                                 startActivity(intent)
                             }
@@ -151,13 +152,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     R.id.rl_bg -> {
                         when (strListParty[position]) {
                             "问卷调查" -> {
-                                var intent = Intent(this, WebInfoActivity::class.java)
+                                var intent = Intent(this, QuestionActivity::class.java)
                                 intent.putExtra("path", "$basePath${streetMainPath}问卷调查")
                                 intent.putExtra("type", "问卷调查")
                                 startActivity(intent)
+
                             }
                             "投票管理" -> {
-                                var intent = Intent(this, WebInfoActivity::class.java)
+                                var intent = Intent(this, VoteActivity::class.java)
                                 intent.putExtra("path", "$basePath${streetMainPath}投票管理")
                                 intent.putExtra("type", "投票管理")
                                 startActivity(intent)
@@ -203,11 +205,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 startActivity(intent)
                             }
                             "党史今天" -> {
-                                var intent = Intent(this, WebActivity::class.java)
-                                intent.putExtra(
-                                    "url",
-                                    "http://cpc.people.com.cn/GB/64162/64165/79703/82260/index.html"
-                                )
+                                var intent = Intent(this, HistoryTodayActivity::class.java)
+
                                 intent.putExtra("path", "$basePath${PublicityPath}党史今天")
                                 startActivity(intent)
                             }
@@ -288,7 +287,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 var intent = Intent(this, WebActivity::class.java)
                                 intent.putExtra(
                                     "url",
-                                    "${NetConstants.BASE_URL}zhjd/earthstreet.html"
+                                    "${NetConstants.BASE_URL2}zhjd/earthstreet.html"
                                 )
                                 intent.putExtra("path", "${basePath}GIS地图/建筑物信息")
                                 startActivity(intent)
@@ -308,7 +307,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 when (view.id) {
                     R.id.rl_bg -> {
                         when (strListOpen[position]) {
-                            "公开目录"->{
+                            "公开目录" -> {
                                 var intent = Intent(this, OpenDirectoryActivity::class.java)
 
                                 intent.putExtra("path", "$basePath${partyPath}公开目录")
@@ -316,7 +315,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 startActivity(intent)
                             }
                             "公开指南" -> {
-                               var intent = Intent(this, StreetIntroActivity::class.java)
+                                var intent = Intent(this, StreetIntroActivity::class.java)
 
                                 intent.putExtra("path", "$basePath${partyPath}公开指南")
                                 intent.putExtra("type", "公开指南")
@@ -534,13 +533,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 stringBuffer.append(mIatResults[key])
             }
             etMessage.setText(stringBuffer.toString())
-          /*  //获取焦点
-            etMessage.requestFocus();
-            //将光标定位到文字最后，以便修改
-            etMessage.setSelection(stringBuffer.length);
-            if (isLast) {
-                EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(), 1))
-            }*/
+            /*  //获取焦点
+              etMessage.requestFocus();
+              //将光标定位到文字最后，以便修改
+              etMessage.setSelection(stringBuffer.length);
+              if (isLast) {
+                  EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(), 1))
+              }*/
 
         }
 

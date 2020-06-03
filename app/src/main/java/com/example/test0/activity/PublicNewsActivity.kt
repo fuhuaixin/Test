@@ -34,8 +34,8 @@ class PublicNewsActivity : BaseActivity() {
     var titleAdapter: PubNewsTitAdapter? = null
     var mesAdapter: GoverMesAdapter? = null
     var titleList: MutableList<OpenDireTitleBean> = mutableListOf(
-        OpenDireTitleBean("新闻中心", false, R.mipmap.ic_launcher),
-        OpenDireTitleBean("政务动态", false, R.mipmap.ic_launcher)
+        OpenDireTitleBean("新闻中心", false, R.mipmap.publicity_menu_icon_01),
+        OpenDireTitleBean("政务动态", false, R.mipmap.publicity_menu_icon_02)
     )
     var mListMes: MutableList<OpenDireMesBean> = mutableListOf()
     var type = 0

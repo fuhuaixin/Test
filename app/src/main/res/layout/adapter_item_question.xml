@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_question_bg"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#D5DDFF" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#D5DDFF" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#D5DDFF" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:text="英协路街道各社区便民服务度调查"
+            android:textColor="@color/cl666"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

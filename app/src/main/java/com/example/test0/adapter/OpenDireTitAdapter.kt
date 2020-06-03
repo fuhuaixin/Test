@@ -6,7 +6,6 @@ import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.test0.R
-import com.example.test0.bean.JokeBean
 import com.example.test0.bean.OpenDireTitleBean
 
 class OpenDireTitAdapter(data: MutableList<OpenDireTitleBean>) :

@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:scaleType="fitXY"
-                        android:src="@mipmap/icon_telphone"
+                        android:src="@mipmap/list_nav_icon"
                         android:layout_width="10dp"
                         android:layout_height="10dp"/>
                     <TextView

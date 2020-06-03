@@ -16,7 +16,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.test0.R
 import com.example.test0.adapter.WebInfoAdapter
 import com.example.test0.base.BaseActivity
-import com.example.test0.bean.MoveiBean
 import com.example.test0.bean.WebInfoBean
 import kotlinx.android.synthetic.main.activity_web_info.*
 import kotlinx.android.synthetic.main.inclue_web_title.*
