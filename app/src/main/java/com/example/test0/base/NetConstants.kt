@@ -8,16 +8,17 @@ class NetConstants {
          */
 
         //开发环境
-        const val BASE_URL = "http://192.168.10.50:8055/"//开发环境
-        const val BASE_URL2 = "http://192.168.10.50:8080/"//开发环境
+//        const val BASE_URL = "http://192.168.10.50:8055/"//开发环境
+        const val BASE_URL = "http://117.160.157.90:8055/"//正式环境
+//        const val BASE_URL2 = "http://192.168.10.50:8080/"//开发环境
 
         //办事指南前缀
-        const val OnlineWorkBase = BASE_URL2 + "zhjd/onlinework.html?id="
+        const val OnlineWorkBase = BASE_URL + "zhjd/onlinework.html?id="
 
-        const val OpenDireBase = BASE_URL + "Datas/voiceScreen/"
+        const val OpenDireBase = BASE_URL + "Data/yxlzhjd/voiceScreen/"
 
         //今日党史
-        const val DangShiUrl = BASE_URL2 + "zhjd/server/govinfo/dangshi?datestr="
+        const val DangShiUrl = BASE_URL + "zhjd/server/govinfo/dangshi?datestr="
         //查询天气接口
         const val WeatherUrl =
             "https://tianqiapi.com/api?version=v6&appid=52796525&appsecret=2cBrl3hs&city=金水"
@@ -28,7 +29,7 @@ class NetConstants {
         const val NowEpidemicUrl =
             "http://api.tianapi.com/txapi/ncov/index?key=8a14a867077fe537998673034bde9774"
         //获取在线办事列表
-        const val GovinfoListUrl = BASE_URL2 + "zhjd/server/govinfo/list"
+        const val GovinfoListUrl = BASE_URL + "zhjd/server/govinfo/list"
         //获取笑话
         const val getJokeUrl =
             "http://v.juhe.cn/joke/content/text.php?pagesize=20&key=f9beadc20ba2f1be943862a9650de422&page="

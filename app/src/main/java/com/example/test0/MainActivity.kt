@@ -153,25 +153,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         when (strListParty[position]) {
                             "问卷调查" -> {
                                 var intent = Intent(this, QuestionActivity::class.java)
-                                intent.putExtra("path", "$basePath${streetMainPath}问卷调查")
+                                intent.putExtra("path", "${basePath}公众参与/问卷调查")
                                 intent.putExtra("type", "问卷调查")
                                 startActivity(intent)
 
                             }
                             "投票管理" -> {
                                 var intent = Intent(this, VoteActivity::class.java)
-                                intent.putExtra("path", "$basePath${streetMainPath}投票管理")
+                                intent.putExtra("path", "${basePath}公众参与/投票管理")
                                 intent.putExtra("type", "投票管理")
                                 startActivity(intent)
                             }
                             "留言建议" -> {
                                 var intent = Intent(this, FeedBackActivity::class.java)
-                                intent.putExtra("path", "$basePath${streetMainPath}留言建议")
+                                intent.putExtra("path", "${basePath}公众参与/留言建议")
                                 startActivity(intent)
                             }
                             "区长信箱" -> {
                                 var intent = Intent(this, LetterBoxActivity::class.java)
-                                intent.putExtra("path", "$basePath${streetMainPath}区长信箱")
+                                intent.putExtra("path", "${basePath}公众参与/区长信箱")
                                 startActivity(intent)
                             }
                         }
@@ -287,7 +287,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 var intent = Intent(this, WebActivity::class.java)
                                 intent.putExtra(
                                     "url",
-                                    "${NetConstants.BASE_URL2}zhjd/earthstreet.html"
+                                    "${NetConstants.BASE_URL}zhjd/earthstreet.html"
                                 )
                                 intent.putExtra("path", "${basePath}GIS地图/建筑物信息")
                                 startActivity(intent)
@@ -540,7 +540,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
               if (isLast) {
                   EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(), 1))
               }*/
-
+            if (isLast) {
+                EventBus.getDefault().post(VoiceReplyBean(stringBuffer.toString(), 1))
+            }
         }
 
         override fun onBeginOfSpeech() {
