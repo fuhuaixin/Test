@@ -37,7 +37,6 @@
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/tvTitle"
-                        android:textStyle="bold"
                         android:text="资源设施"
                         android:textSize="16sp"
                         android:textColor="@color/tvColor"
@@ -51,8 +50,9 @@
                     <TextView
                         android:id="@+id/tvContent"
                         android:layout_marginTop="15dp"
-                        android:textColor="@color/tvColor"
-                        android:textSize="14sp"
+                        android:textColor="@color/cl666"
+                        android:lineSpacingMultiplier="1.5"
+                        android:textSize="12sp"
                         android:text="【土地资源】金水区总面积136.66平方公里，主要分为：（1）耕地1327.3公顷，占全区土地面积的0.097%。在耕地面积中，有灌溉水田17公顷，水浇地1051.4公顷，旱地258.9公顷。（2）园地225.5公顷，占全区土地面积的0.017%，全部为果园。（3）林地409.3公顷，占全区土地面积的0.03%。其中有林地260.9公顷，其他林地148.4公顷。（4）草地68.95公顷，占全区土地面积的0.005%，全部为其他草地"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

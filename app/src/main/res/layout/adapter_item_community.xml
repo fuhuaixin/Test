@@ -12,7 +12,8 @@
         android:id="@+id/ll_item">
 
         <TextView
-            android:padding="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:gravity="center"
             android:id="@+id/tv_name"
             android:layout_width="0dp"
@@ -28,8 +29,8 @@
             android:layout_height="match_parent"/>
         <TextView
             android:gravity="center"
-            android:padding="15dp"
-
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:id="@+id/tv_number"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -43,8 +44,8 @@
             android:layout_height="match_parent"/>
         <TextView
             android:gravity="center"
-            android:padding="15dp"
-
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:id="@+id/tv_name2"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -59,8 +60,8 @@
             android:layout_height="match_parent"/>
         <TextView
             android:gravity="center"
-            android:padding="15dp"
-
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:id="@+id/tv_number2"
             android:layout_width="0dp"
             android:layout_weight="1"

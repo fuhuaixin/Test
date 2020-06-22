@@ -33,7 +33,7 @@ class VoteActivity :BaseActivity() {
                     R.id.ll_item ->{
                         when(position){
                             0 ->{
-                                toWeb("https://tp.wjx.top/jq/76510652.aspx")
+                                toWeb("https://tp.wjx.top/jq/82257582.aspx")
                             }
                         }
                     }
@@ -50,7 +50,7 @@ class VoteActivity :BaseActivity() {
                     R.id.ll_item ->{
                         when(position){
                             0 ->{
-                                toWeb("https://tp.wjx.top/jq/76510652.aspx")
+                                toWeb("https://tp.wjx.top/jq/82257582.aspx")
                             }
                         }
                     }

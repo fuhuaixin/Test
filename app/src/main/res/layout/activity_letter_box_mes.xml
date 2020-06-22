@@ -87,21 +87,43 @@
 
                         <TextView
                             android:id="@+id/tv_deal_mes"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textColor="@color/cl666"
                             android:textSize="14sp" />
 
-                        <TextView
-                            android:id="@+id/tv_deal_time"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text=""
-                            android:textColor="@color/cl999"
-                            android:textSize="12sp" />
+                            android:layout_marginTop="20dp">
+                            <TextView
+                                android:id="@+id/tv_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/cl999"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tv_tel"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/cl999"
+                                android:textSize="12sp" />
+                            <TextView
+                                android:id="@+id/tv_deal_time"
+                                android:layout_alignParentRight="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/cl999"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
                     </LinearLayout>
 
                     <LinearLayout

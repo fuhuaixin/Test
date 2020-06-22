@@ -50,39 +50,23 @@
                         android:layout_height="wrap_content"
                         android:text="未来路街道简介"
                         android:textColor="@color/tvColor"
-                        android:textSize="20sp" />
+                        android:textSize="16sp" />
 
                     <View
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@color/lineColor"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"/>
 
                     <TextView
-                        android:textSize="16sp"
+                        android:lineSpacingMultiplier="1.5"
+                        android:textSize="12sp"
                         android:textColor="#666666"
                         android:text="@string/street_intro_one"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textSize="16sp"
-                        android:textColor="#666666"
-                        android:text="@string/street_intro_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textSize="16sp"
-                        android:textColor="#666666"
-                        android:text="@string/street_intro_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textSize="16sp"
-                        android:textColor="#666666"
-                        android:text="@string/street_intro_4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+
                 </LinearLayout>
 
             </LinearLayout>

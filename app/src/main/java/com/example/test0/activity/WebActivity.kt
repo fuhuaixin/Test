@@ -77,10 +77,10 @@ class WebActivity : BaseActivity() {
     }
 
     override fun setLayoutId(): Int {
-        if (intent.getStringExtra("path").indexOf("建筑物信息")==-1){
-            return R.layout.activity_webh5
+        return if (intent.getStringExtra("path").indexOf("建筑物信息")==-1){
+            R.layout.activity_webh5
         }else{
-            return R.layout.activity_bim
+            R.layout.activity_bim
         }
     }
 

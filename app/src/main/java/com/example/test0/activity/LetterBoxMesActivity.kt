@@ -21,6 +21,8 @@ class LetterBoxMesActivity :BaseActivity() {
         tvPath.text =path
         tv_letter_title.text =mData!!.askMessage
         tv_deal_mes.text =mData!!.dealMessage
+        tv_address.text =mData!!.address
+        tv_tel.text =mData!!.telephone
         tv_deal_time.text =mData!!.dealTime
         tv_send_time.text =mData!!.sendTime
         tv_type.text =mData!!.type

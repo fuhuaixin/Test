@@ -38,6 +38,25 @@ public class LetterBoxBean implements Serializable {
         private String title;
         private String type;
         private String url;
+        private String address;
+        private String telephone;
+
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getTelephone() {
+            return telephone;
+        }
+
+        public void setTelephone(String telephone) {
+            this.telephone = telephone;
+        }
 
         public String getAskMessage() {
             return askMessage;

@@ -29,15 +29,14 @@ class HotLineActivity :BaseActivity() {
         if (type == "community"){
             tv_title.text ="社区热线"
             mList.add(CommunityBean("街道办事处","电话","街道办事处","电话"))
-            mList.add(CommunityBean("文化路街道办事处","63936965","未来路街道办事处","65965194"))
-            mList.add(CommunityBean("经八路街道办事处","56805800","凤凰台街道办事处","66758705"))
-            mList.add(CommunityBean("大石桥街道办事处","63871900","杜岭街道办事处","66226811"))
-            mList.add(CommunityBean("兴达路街道办事处","68100001","南阳路街道办事处","63922822"))
-            mList.add(CommunityBean("丰产路街道办事处","69125111","北林路街道办事处","65744009"))
-            mList.add(CommunityBean("国基路街道办事处","65692201","丰庆路街道办事处","63560001"))
-            mList.add(CommunityBean("杨金路街道办事处","61992211","花园路街道办事处","65953245"))
-            mList.add(CommunityBean("人民路街道办事处","66226465","东风路街道办事处","63752058"))
-            mList.add(CommunityBean("南阳新村街道办事处","63731056","",""))
+            mList.add(CommunityBean("燕庄社区居委会","暂无","沈庄社区居委会","暂无"))
+            mList.add(CommunityBean("聂庄社区居委会","65996979","黑庄社区居委会","65675233"))
+            mList.add(CommunityBean("司家庄社区居委会","暂无","东明路社区居委会","63350633"))
+            mList.add(CommunityBean("康复社区居委会","65588292","东风路街道办事处","63752058"))
+            mList.add(CommunityBean("金水花园社区居委会","65615465","新鑫花园社区居委会","68261655"))
+            mList.add(CommunityBean("民航路社区居委会","63380286","吉祥花园社区居委会","66717072"))
+            mList.add(CommunityBean("广发花园社区居委会","63381866","锦江花园社区居委会","6561371"))
+            mList.add(CommunityBean("人民路街道办事处","66226465","",""))
         }else if (type=="department"){
             tv_title.text ="区直电话"
             mList.add(CommunityBean("办事处","电话","办事处","电话"))
