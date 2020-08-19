@@ -1,7 +1,13 @@
 package com.example.test0.base
 
+import android.content.Context
 import android.graphics.Color
+import android.graphics.PixelFormat
 import android.os.Bundle
+import android.view.Gravity
+import android.view.ViewGroup
+import android.view.WindowManager
+import com.example.test0.utlis.CustomViewGroup
 import com.zyao89.view.zloading.ZLoadingDialog
 import com.zyao89.view.zloading.Z_TYPE
 import me.imid.swipebacklayout.lib.SwipeBackLayout
@@ -35,6 +41,7 @@ abstract class BaseActivity : SwipeBackActivity() {
         mSwipeBackLayout!!.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         // 滑动退出的效果只能从边界滑动才有效果，如果要扩大touch的范围，可以调用这个方法
         //mSwipeBackLayout.setEdgeSize(200);
+        UnDown()
         initParams()
         initCommonView()
         initView()
@@ -61,6 +68,24 @@ abstract class BaseActivity : SwipeBackActivity() {
             .setDialogBackgroundColor(Color.parseColor("#CC111111"))
             .setDurationTime(1.3)
 
+    }
+
+    //禁止下拉
+    fun UnDown(){
+        var manager:WindowManager = applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val localLayoutParams = WindowManager.LayoutParams()
+        localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR
+        localLayoutParams.gravity = Gravity.TOP
+        localLayoutParams.flags =
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or  // this is to enable the notification to recieve touch events
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or  // Draws over status bar
+                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+        localLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
+        localLayoutParams.height = (50 * resources
+            .displayMetrics.scaledDensity).toInt() //50高度这边我是固定死了，也可以动态获取状态栏高度，然后赋值
+        localLayoutParams.format = PixelFormat.TRANSPARENT
+        var view = CustomViewGroup(this) as ViewGroup
+        manager.addView(view,localLayoutParams)
     }
 
 

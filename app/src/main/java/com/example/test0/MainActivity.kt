@@ -5,10 +5,13 @@ import android.app.StatusBarManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
@@ -25,6 +28,7 @@ import com.example.test0.adapter.StreetMainAdapter
 import com.example.test0.base.NetConstants
 import com.example.test0.bean.VoiceReplyBean
 import com.example.test0.bean.WeatherNowBean
+import com.example.test0.utlis.CustomViewGroup
 import com.example.test0.utlis.JsonParser
 import com.example.test0.utlis.NoScrollerGridLayoutManager
 import com.example.test0.utlis.ToastUtils
@@ -76,6 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        UnDown()
         GetPermission()
         mIat = SpeechRecognizer.createRecognizer(this, mInitListener)
         initView()
@@ -357,7 +362,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val permissions = arrayOf<String>(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.SYSTEM_ALERT_WINDOW
             )
             //验证是否许可权限
             for (str in permissions) {
@@ -369,6 +375,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //禁止下拉
+    fun UnDown(){
+        var manager:WindowManager = applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val localLayoutParams = WindowManager.LayoutParams()
+        localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR
+        localLayoutParams.gravity = Gravity.TOP
+        localLayoutParams.flags =
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or  // this is to enable the notification to recieve touch events
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or  // Draws over status bar
+                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+        localLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
+        localLayoutParams.height = (50 * resources
+            .displayMetrics.scaledDensity).toInt() //50高度这边我是固定死了，也可以动态获取状态栏高度，然后赋值
+        localLayoutParams.format = PixelFormat.TRANSPARENT
+        var view = CustomViewGroup(this) as ViewGroup
+        manager.addView(view,localLayoutParams)
+    }
 
     fun initHttpListener() {
         val stringRequest =
